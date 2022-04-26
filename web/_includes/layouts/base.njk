@@ -12,8 +12,16 @@
     <style>
       {{ css | cssmin | safe }}
     </style>
+    <script type="module">
+      import {defineComponents} from '/assets/scu-web-components/scw.js';
+      defineComponents({
+        components: ['scw-button']
+      });
+    </script>
+    <link rel="stylesheet" href="/assets/scu-web-components/scw.css" />
   </head>
   <body>
+    <scw-button aria-label="hello world"></scw-button>
     <header>
       <h1 class="home"><a href="{{ '/' | url }}">{{ metadata.title }}</a></h1>
       <ul class="nav">

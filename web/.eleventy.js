@@ -42,7 +42,12 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addFilter("markdownify", function(value) {
     const md = new markdownIt(options)
     return md.render(value)
-  })
+  });
+
+  eleventyConfig.addPassthroughCopy({
+    "node_modules/scu-web-components/dist": "assets/scu-web-components"
+  });
+
   return {
     templateFormats: [
       "md",

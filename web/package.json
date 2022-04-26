@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "npx eleventy",
-    "dev": "npx eleventy --watch --serve",
+    "build": "npx eleventy --output=dist",
+    "dev": "npx eleventy --watch --serve --incremental --output=dist-dev",
     "now-build": "npm run build",
     "debug": "DEBUG=* npx eleventy"
   },
@@ -13,7 +13,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@11ty/eleventy": "^0.9.0",
+    "@11ty/eleventy": "^1.0.1",
     "@11ty/eleventy-plugin-syntaxhighlight": "^2.0.3",
     "@sanity/block-content-to-markdown": "0.0.5",
     "@sanity/client": "^2.0.0",
@@ -23,5 +23,8 @@
     "luxon": "^1.19.3",
     "markdown-it": "^10.0.0",
     "markdown-it-anchor": "^5.2.5"
+  },
+  "dependencies": {
+    "scu-web-components": "^0.0.12"
   }
 }
