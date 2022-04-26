@@ -49,13 +49,13 @@ module.exports = function(eleventyConfig) {
     "node_modules/scu-web-components/dist": "assets/scu-web-components"
   });
 
-  /*eleventyConfig.addPlugin(litPlugin, {
+  eleventyConfig.addPlugin(litPlugin, {
     mode: 'vm',
     componentModules: [
       'node_modules/scu-web-components/dist/scw-button/scw-button.js',
       'node_modules/scu-web-components/dist/scw-link/scw-link.js',
     ],
-  });*/
+  });
 
   return {
     templateFormats: [
