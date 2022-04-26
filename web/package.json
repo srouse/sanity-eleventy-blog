@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "npx eleventy",
-    "dev": "npx eleventy --watch --serve --incremental",
+    "build": "NODE_OPTIONS=--experimental-vm-modules npx eleventy",
+    "dev": "NODE_OPTIONS=--experimental-vm-modules npx eleventy --watch --serve --incremental",
     "now-build": "npm run build",
     "debug": "DEBUG=* npx eleventy"
   },
@@ -25,6 +25,7 @@
     "markdown-it-anchor": "^5.2.5"
   },
   "dependencies": {
+    "@lit-labs/eleventy-plugin-lit": "^0.2.0",
     "scu-web-components": "^0.0.12"
   }
 }

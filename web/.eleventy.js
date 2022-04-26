@@ -1,6 +1,7 @@
 const { DateTime } = require("luxon");
 const util = require('util')
 const CleanCSS = require("clean-css");
+const litPlugin = require('@lit-labs/eleventy-plugin-lit');
 
 module.exports = function(eleventyConfig) {
 
@@ -47,6 +48,14 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy({
     "node_modules/scu-web-components/dist": "assets/scu-web-components"
   });
+
+  /*eleventyConfig.addPlugin(litPlugin, {
+    mode: 'vm',
+    componentModules: [
+      'node_modules/scu-web-components/dist/scw-button/scw-button.js',
+      'node_modules/scu-web-components/dist/scw-link/scw-link.js',
+    ],
+  });*/
 
   return {
     templateFormats: [
