@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "npx eleventy --output=dist",
-    "dev": "npx eleventy --watch --serve --incremental --output=dist-dev",
+    "build": "npx eleventy",
+    "dev": "npx eleventy --watch --serve --incremental",
     "now-build": "npm run build",
     "debug": "DEBUG=* npx eleventy"
   },
