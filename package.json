@@ -14,10 +14,10 @@
     "server": "http-server ./"
   },
   "devDependencies": {
-    "lerna": "^3.16.4"
+    "lerna": "^3.16.4",
+    "http-server": "^14.1.0"
   },
   "dependencies": {
-    "@sanity/client": "^3.3.0",
-    "http-server": "^14.1.0"
+    "@sanity/client": "^3.3.0"
   }
 }
