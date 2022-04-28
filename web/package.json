@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "NODE_OPTIONS=--experimental-vm-modules npx eleventy",
+    "build": "NODE_OPTIONS=--experimental-vm-modules npx eleventy && npm run build:cssr",
     "dev": "NODE_OPTIONS=--experimental-vm-modules npx eleventy --watch --serve --incremental ",
     "now-build": "npm run build",
     "debug": "DEBUG=* npx eleventy",
