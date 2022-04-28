@@ -14,18 +14,51 @@
     </style>
     <script type="module">
       import {defineComponents} from '/assets/scu-web-components/scw.js';
-      defineComponents({
-        components: [
-          'scw-link',
-          'scw-button'
-        ]
-      });
+      // don't technically need it for scw-links...
+      /* setTimeout(() => {
+        console.log('loaded');
+        defineComponents({
+          components: [
+            'scw-component',
+            'scw-link',
+            'scw-button'
+          ]
+        });
+      }, 1000 );*/
+      // defineComponents();
     </script>
-    <link rel="stylesheet" href="/assets/scu-web-components/scw.css" />
+    <!--link rel="stylesheet" rel="preload" href="/assets/scu-web-components/scw.css" /-->
+    <link rel="stylesheet" rel="preload" href="/assets/scu-web-components/tokens/fonts.css" />
+    <link rel="stylesheet" rel="preload" href="/ssr.css" />
   </head>
   <body>
-    <scw-link aria-label="hello world"></scw-link>
-    <scw-link aria-label="hello world 2"></scw-link>
+    <scw-flex-v
+      scw-gap-2s>
+      <scw-link 
+        aria-label="Summit Credit Union (text)"
+        href="https://www.summitcreditunion.com"
+        target="_new">
+      </scw-link>
+      <scw-link aria-label="Summit Credit Union (text)"
+        href="https://www.summitcreditunion.com"
+        target="_new">
+      </scw-link>
+      <scw-element
+        scw-text-06
+        scw-color-primary
+        scw-border-right-checking-06
+        scw-padding-4s>
+        Hi There scw-text-07
+      </scw-element>
+      <scw-element
+        scw-text-bold-07>
+        Hi There scw-text-bold-07
+      </scw-element>
+      <scw-element
+        scw-text-bold-condensed-07>
+        Hi There scw-text-bold-condensed-07
+      </scw-element>
+    </scw-flex-v>
     <header>
       <h1 class="home"><a href="{{ '/' | url }}">{{ metadata.title }}</a></h1>
       <ul class="nav">

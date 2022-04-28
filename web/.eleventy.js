@@ -46,14 +46,16 @@ module.exports = function(eleventyConfig) {
   });
 
   eleventyConfig.addPassthroughCopy({
-    "node_modules/scu-web-components/dist": "assets/scu-web-components"
+    "node_modules/scu-web-components/dist": "assets/scu-web-components",
+    "node_modules/@lit-labs/ssr/lib": "assets/@lit-labs/ssr/lib"
   });
 
   eleventyConfig.addPlugin(litPlugin, {
     mode: 'vm',
-    componentModules: [
+    componentModules: [// TODO: create a single file for these...
       'node_modules/scu-web-components/dist/scw-button/scw-button.js',
       'node_modules/scu-web-components/dist/scw-link/scw-link.js',
+      'node_modules/scu-web-components/dist/scw-component/scw-component.js',
     ],
   });
 

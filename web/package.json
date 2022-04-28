@@ -5,9 +5,11 @@
   "main": "index.js",
   "scripts": {
     "build": "NODE_OPTIONS=--experimental-vm-modules npx eleventy",
-    "dev": "NODE_OPTIONS=--experimental-vm-modules npx eleventy --watch --serve --incremental",
+    "dev": "NODE_OPTIONS=--experimental-vm-modules npx eleventy --watch --serve --incremental ",
     "now-build": "npm run build",
-    "debug": "DEBUG=* npx eleventy"
+    "debug": "DEBUG=* npx eleventy",
+    "build:cssr": "scw-components css './_includes/**/*' './_site/ssr.css'",
+    "server": "http-server ./_site --gzip"
   },
   "keywords": [],
   "author": "",
@@ -16,7 +18,7 @@
     "@11ty/eleventy": "^1.0.1",
     "@11ty/eleventy-plugin-syntaxhighlight": "^2.0.3",
     "@sanity/block-content-to-markdown": "0.0.5",
-    "@sanity/client": "^2.0.0",
+    "@sanity/client": "^3.3.0",
     "clean-css": "^4.2.1",
     "dotenv": "^8.2.0",
     "groq": "^0.142.0",
@@ -26,6 +28,7 @@
   },
   "dependencies": {
     "@lit-labs/eleventy-plugin-lit": "^0.2.0",
-    "scu-web-components": "^0.0.12"
+    "@lit-labs/ssr": "^2.1.0",
+    "scu-web-components": "^0.0.17"
   }
 }
