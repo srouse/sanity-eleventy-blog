@@ -1,4 +1,4 @@
-import {format, parseISO} from 'date-fns'
+import {format} from 'date-fns'
 
 export default {
   name: 'post',
@@ -111,8 +111,8 @@ export default {
       slug = {},
       media
     }) {
-      const dateSegment = format(parseISO(publishedAt), 'yyyy/MM');
-      const path = `/${dateSegment}/${slug.current}/`;
+      const dateSegment = format(publishedAt, 'YYYY/MM')
+      const path = `/${dateSegment}/${slug.current}/`
       return {
         title,
         media,

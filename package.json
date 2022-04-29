@@ -10,14 +10,10 @@
     "build-web": "lerna bootstrap && cd web && npm run build",
     "lint": "lerna run lint",
     "postinstall": "lerna bootstrap",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "http-server ./"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
     "lerna": "^3.16.4",
     "http-server": "^14.1.0"
-  },
-  "dependencies": {
-    "@sanity/client": "^3.3.0"
   }
 }
