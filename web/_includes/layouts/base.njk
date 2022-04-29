@@ -5,7 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ renderData.title or title or metadata.title }}</title>
     <meta name="Description" content="{{ renderData.description or description or metadata.description }}">
+    
+    <!-- OSANO GDPR -->
     <script src="https://cmp.osano.com/6oaTaT4PVK0B30Y/2f08b4c3-dae4-47ad-a02e-e2e4fa3e5db1/osano.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0LX5ZBPTPZ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-0LX5ZBPTPZ');
+    </script>
+    <!-- ANALYTICS END -->
+
+
       {# <link rel="alternate" href="{{ metadata.feed.path | url }}" type="application/atom+xml" title="{{ metadata.title }}"> #}
     {% set css %}
       {% include "style.css" %}
