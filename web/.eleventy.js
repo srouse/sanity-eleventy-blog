@@ -47,7 +47,7 @@ module.exports = function(eleventyConfig) {
 
   eleventyConfig.addPassthroughCopy({
     "node_modules/scu-web-components/dist": "assets/scu-web-components",
-    "node_modules/@lit-labs/ssr/lib": "assets/@lit-labs/ssr/lib"
+    // "node_modules/@lit-labs/ssr/lib": "assets/@lit-labs/ssr/lib"
   });
 
   eleventyConfig.addPlugin(litPlugin, {

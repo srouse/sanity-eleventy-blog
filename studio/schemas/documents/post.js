@@ -33,6 +33,14 @@ export default {
       title: 'Main image'
     },
     {
+      name: 'something',
+      type: 'reference',
+      title: 'Something',
+      to: {
+        type: 'something'
+      }
+    },
+    {
       name: 'excerpt',
       type: 'excerptPortableText',
       title: 'Excerpt',

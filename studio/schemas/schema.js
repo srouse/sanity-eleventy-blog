@@ -35,9 +35,9 @@ export default createSchema({
     authorReference,
     bodyPortableText,
     bioPortableText,
-    excerptPortableText
+    excerptPortableText,
 
-    // something
+    something
 
     // When added to this list, object types can be used as
     // { type: 'typename' } in other document schemas
