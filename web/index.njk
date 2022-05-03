@@ -14,6 +14,7 @@ navtitle: Home
 
 <p>More posts can be found in <a href="{{ '/posts/' | url }}">the archive</a>.</p>
 
+<ul class="nav">
 {%- for post in posts -%}
   <li>{{ post.title }} {{ post.url }}</li>
 {%- endfor -%}
@@ -21,6 +22,7 @@ navtitle: Home
 {%- for post in collections.myPosts -%}
   <li>{{ post.title }} {{ post.url }}</li>
 {%- endfor -%}
+</ul>
 
 <scw-card
   style="max-width: 600px;">
