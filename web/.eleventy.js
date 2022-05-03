@@ -2,6 +2,7 @@ const { DateTime } = require("luxon");
 const util = require('util')
 const CleanCSS = require("clean-css");
 const litPlugin = require('@lit-labs/eleventy-plugin-lit');
+const { exec } = require("child_process");
 
 module.exports = function(eleventyConfig) {
 
@@ -52,11 +53,14 @@ module.exports = function(eleventyConfig) {
 
   eleventyConfig.addPlugin(litPlugin, {
     mode: 'vm',
-    componentModules: [// TODO: create a single file for these...
-      'node_modules/scu-web-components/dist/scw-button/scw-button.js',
-      'node_modules/scu-web-components/dist/scw-link/scw-link.js',
-      'node_modules/scu-web-components/dist/scw-component/scw-component.js',
+    componentModules: [
+      'node_modules/scu-web-components/dist/scw-components.js'
     ],
+  });
+
+  eleventyConfig.on('eleventy.after', async () => {
+    exec(`scw-components css './_includes/**/*' './_site/ssr.css'`);
+    console.log("rebuild cssr");
   });
 
   return {

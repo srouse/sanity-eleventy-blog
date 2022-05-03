@@ -26,6 +26,11 @@ export default {
       ]
     },
     {
+      title: 'Menu Id',
+      name: 'menuId',
+      type: 'string'
+    },
+    {
       name: 'children',
       type: 'array',
       title: 'Links',

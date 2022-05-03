@@ -5,9 +5,9 @@ const client = require('../utils/sanityClient.js')
 // const overlayDrafts = require('../utils/overlayDrafts')
 // const hasToken = !!client.config().token
 
-async function getNavLists () {
+async function getNavLists (id) {
   // Learn more: https://www.sanity.io/docs/data-store/how-queries-work
-  const filter = groq`*[_type == "navList"]`
+  const filter = groq`*[_type == "navList" && menuId == "${id}"]`
   const navAttrs = groq`
     _id,
     title,
@@ -25,7 +25,18 @@ async function getNavLists () {
   }`
   const query = [filter, projection].join(' ')
   const docs = await client.fetch(query).catch(err => console.error(err))
-  return docs
+  return ( docs && docs.length > 0 ) ? docs[0] : null
+}
+
+async function getNavListsById() {
+  const main = await getNavLists('main')
+  const footer = await getNavLists('footer')
+  const utility = await getNavLists('utility')
+  return {
+    main,
+    utility,
+    footer
+  }
 }
 
 // some recursive magic...
@@ -55,4 +66,4 @@ function _pageRefRecursive(navAttrs, content) {
     }`;
 }
 
-module.exports = getNavLists
+module.exports = getNavListsById

@@ -31,6 +31,21 @@ export default {
       description: 'Publish an author and set a reference to them here.',
       title: 'Author',
       to: [{type: 'author'}]
+    },
+    {
+      name: 'pagesPermalink',
+      type: 'string',
+      description: 'The folder of the permalink for pages posts'
+    },
+    {
+      name: 'blogPermalink',
+      type: 'string',
+      description: 'The folder of the permalink for blog posts'
+    },
+    {
+      name: 'authorsPermalink',
+      type: 'string',
+      description: 'The folder of the permalink for authors'
     }
   ]
 }
