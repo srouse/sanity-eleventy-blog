@@ -5,6 +5,20 @@ export default {
   type: 'document',
   title: 'Navigation List',
   icon: GoListUnordered,
+  preview: {
+    select: {
+      title: 'title',
+      description: 'description',
+      menuId: 'menuId'
+    },
+    prepare (selection) {
+      const {title, description, menuId} = selection
+      return {
+        title: `${title} ${menuId ? `(${menuId})` : ''}`,
+        subtitle: description
+      }
+    }
+  },
   fields: [
     {
       name: 'title',
@@ -62,11 +76,5 @@ export default {
         }
       ]
     }
-  ],
-  preview: {
-    select: {
-      title: 'title',
-      subtitle: 'description'
-    }
-  }
+  ]
 }

@@ -22,3 +22,17 @@ navtitle: Home
   <li>{{ post.title }} {{ post.url }}</li>
 {%- endfor -%}
 
+<ul class="nav">
+  {%- for nav in collections.nav | reverse -%}
+    <li 
+      class="
+        nav-item
+        {% if nav.url == page.url %}
+          nav-item-active
+        {% endif %}">
+      <a href="{{ nav.url | url }}">
+        {{ nav.data.navtitle }}
+      </a>
+    </li>
+  {%- endfor -%}
+</ul>
