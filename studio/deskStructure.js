@@ -1,9 +1,21 @@
 import S from '@sanity/desk-tool/structure-builder'
-import { MdSettings } from "react-icons/md";
-import { MdPerson } from "react-icons/md";
+import {
+  MdSettings,
+  MdPerson
+} from 'react-icons/md'
+import {
+  GoHome
+} from 'react-icons/go'
 
 const hiddenDocTypes = listItem =>
-  !['category', 'author', 'post', 'siteSettings'].includes(listItem.getId())
+  ![
+    'category',
+    'author',
+    'post',
+    'siteSettings',
+    'pageLayout',
+    'navList'
+  ].includes(listItem.getId())
 
 export default () =>
   S.list()
@@ -18,6 +30,20 @@ export default () =>
             .schemaType('siteSettings')
             .documentId('siteSettings')
         ),
+      S.documentListItem()
+        .title('Frontpage')
+        .schemaType('page')
+        .icon(GoHome)
+        .child(
+          S.document()
+            .schemaType('page')
+            .documentId('frontpage')
+            .views([S.view.form()])
+        ),
+      S.listItem()
+        .title('Navigation')
+        .schemaType('navList')
+        .child(S.documentTypeList('navList').title('Navigations')),
       S.listItem()
         .title('Blog posts')
         .schemaType('post')

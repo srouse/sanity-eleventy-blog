@@ -1,0 +1,16 @@
+
+<ul>
+  {%- for navigation in navigation -%}
+    <li>{{ navigation.title }}</li>
+    <ul>
+    {%- for subNavigation in navigation.children -%}
+        <li>{{ subNavigation.title }}</li>
+        <ul>
+        {%- for subSubNavigation in subNavigation.children -%}
+            <li>{{ subSubNavigation.title }}</li>
+        {%- endfor -%}
+        </ul>
+    {%- endfor -%}
+    </ul>
+  {%- endfor -%}
+</ul>
