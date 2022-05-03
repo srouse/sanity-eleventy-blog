@@ -7,6 +7,7 @@ async function getHomePage () {
   const projection = groq`[0]`
   const query = [filter, projection].join(' ')
   const homePage = await client.fetch(query).catch(err => console.error(err))
+  console.log('')
   return homePage
 }
 
