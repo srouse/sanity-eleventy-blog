@@ -22,6 +22,16 @@ navtitle: Home
   <li>{{ post.title }} {{ post.url }}</li>
 {%- endfor -%}
 
+<scw-card
+  style="max-width: 600px;">
+  <img
+    src="https://clubk9.com/wp-content/uploads/2018/04/Depositphotos_4953129_original-1-256x256.jpg"
+    alt="img alt text" />
+  <sup>Category</sup>
+  <h1>Heading</h1>
+  <p>a description</p>
+</scw-card>
+
 <ul class="nav">
   {%- for nav in collections.nav | reverse -%}
     <li 
