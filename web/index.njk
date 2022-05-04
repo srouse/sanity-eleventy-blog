@@ -13,12 +13,14 @@ navtitle: Home
   {%- for row in homePage.content -%}
     <scw-flex-h 
       scw-gap-2s>
+      {% set rowLoop = loop %}
       {%- for cell in row.rowLayout -%}
         <scw-card scw-fill
-          src="{{ urlFor( cell.mainImage ).width(400).url() }}"
+          src="{{ urlFor(cell.mainImage).width(400).url() }}"
           alt="img alt text"
           heading="{{ cell.title }}"
           preload
+          size="{% if rowLoop.index == 1 %}large{% elif rowLoop.index == 2 %}medium{% else %}small{% endif %}"
           description="{{ cell.excerpt }}">
         </scw-card>
       {%- endfor -%}
