@@ -3,6 +3,7 @@ const util = require('util')
 const CleanCSS = require("clean-css");
 const litPlugin = require('@lit-labs/eleventy-plugin-lit');
 const { exec } = require("child_process");
+const urlFor = require("./utils/imageUrl");
 
 module.exports = function(eleventyConfig) {
 
@@ -46,6 +47,8 @@ module.exports = function(eleventyConfig) {
     return md.render(value)
   });
 
+  eleventyConfig.addNunjucksGlobal("urlFor", urlFor);
+
   eleventyConfig.addPassthroughCopy({
     "node_modules/scu-web-components/dist": "assets/scu-web-components",
     // "node_modules/@lit-labs/ssr/lib": "assets/@lit-labs/ssr/lib"
@@ -59,7 +62,7 @@ module.exports = function(eleventyConfig) {
   });
 
   eleventyConfig.on('eleventy.after', async () => {
-    exec(`scw-components css './_includes/**/*' './_site/ssr.css'`);
+    exec(`scw-components css '{./_includes/**/*,./*}.njk' './_site/ssr.css'`);
     console.log("rebuild cssr");
   });
 

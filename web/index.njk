@@ -6,9 +6,28 @@ navtitle: Home
 ---
 
 <h1>{{ homePage.title }}</h1>
+{{ homePage.slug }}
+{{ homePage.publishedAt }}
 
-<h1>Latest Posts</h1>
+<scw-stack scw-gap-2s>
+  {%- for row in homePage.content -%}
+    <scw-flex-h 
+      scw-gap-2s>
+      {%- for cell in row.rowLayout -%}
+        <scw-card>
+          <img
+            src="{{ urlFor( cell.mainImage ).width(200).url() }}"
+            alt="img alt text" />
+          <h1>{{ cell.title }}</h1>
+          <p>{{ cell.excerpt }}</p>
+        </scw-card>
+      {%- endfor -%}
+    </scw-flex-h>
+  {%- endfor -%}
+</scw-stack>
 
+
+{#
 {% set postslist = collections.myPosts %}
 {% include "postslist.njk" %}
 
@@ -24,15 +43,7 @@ navtitle: Home
 {%- endfor -%}
 </ul>
 
-<scw-card
-  style="max-width: 600px;">
-  <img
-    src="https://clubk9.com/wp-content/uploads/2018/04/Depositphotos_4953129_original-1-256x256.jpg"
-    alt="img alt text" />
-  <sup>Category</sup>
-  <h1>Heading</h1>
-  <p>a description</p>
-</scw-card>
+
 
 <ul class="nav">
   {%- for nav in collections.nav | reverse -%}
@@ -48,3 +59,4 @@ navtitle: Home
     </li>
   {%- endfor -%}
 </ul>
+#}

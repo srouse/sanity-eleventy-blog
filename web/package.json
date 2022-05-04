@@ -8,7 +8,7 @@
     "dev": "NODE_OPTIONS=--experimental-vm-modules npx eleventy --watch --serve --incremental",
     "now-build": "npm run build",
     "debug": "DEBUG=* npx eleventy",
-    "build:cssr": "scw-components css './_includes/**/*' './_site/ssr.css'",
+    "build:cssr": "scw-components css '{./_includes/**/*,./*}.njk' './_site/ssr.css'",
     "server": "http-server ./_site --gzip"
   },
   "keywords": [],

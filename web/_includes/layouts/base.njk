@@ -62,13 +62,12 @@
     <scw-stack>
       {% include "sections/header.njk" %}
 
-      <main
-        scw-element
+      <scw-stack
         class="
           baseContent
           {% if templateClass %}{{ templateClass }}"{% endif %}">
         {{ content | safe }}
-      </main>
+      </scw-stack>
 
       {% include "sections/footer.njk" %}
     </scw-stack>
