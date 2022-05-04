@@ -29,6 +29,6 @@
   "dependencies": {
     "@lit-labs/eleventy-plugin-lit": "^0.2.0",
     "@lit-labs/ssr": "^2.1.0",
-    "scu-web-components": "0.0.18"
+    "scu-web-components": "0.0.21"
   }
 }

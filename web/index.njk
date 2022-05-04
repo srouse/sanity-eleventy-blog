@@ -14,12 +14,11 @@ navtitle: Home
     <scw-flex-h 
       scw-gap-2s>
       {%- for cell in row.rowLayout -%}
-        <scw-card>
-          <img
-            src="{{ urlFor( cell.mainImage ).width(200).format('webp').url() }}"
-            alt="img alt text" />
-          <h1>{{ cell.title }}</h1>
-          <p>{{ cell.excerpt }}</p>
+        <scw-card scw-fill
+          src="{{ urlFor( cell.mainImage ).width(400).url() }}"
+          alt="img alt text"
+          heading="{{ cell.title }}"
+          description="{{ cell.excerpt }}">
         </scw-card>
       {%- endfor -%}
     </scw-flex-h>
