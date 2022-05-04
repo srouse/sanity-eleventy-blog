@@ -16,7 +16,7 @@ navtitle: Home
       {%- for cell in row.rowLayout -%}
         <scw-card>
           <img
-            src="{{ urlFor( cell.mainImage ).width(200).url() }}"
+            src="{{ urlFor( cell.mainImage ).width(200).format('webp').url() }}"
             alt="img alt text" />
           <h1>{{ cell.title }}</h1>
           <p>{{ cell.excerpt }}</p>
