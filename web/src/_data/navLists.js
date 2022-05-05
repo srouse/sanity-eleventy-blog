@@ -4,6 +4,7 @@ const client = require('../utils/sanityClient.js')
 // const serializers = require('../utils/serializers')
 // const overlayDrafts = require('../utils/overlayDrafts')
 // const hasToken = !!client.config().token
+const fs = require('fs');
 
 async function getNavLists (id) {
   // Learn more: https://www.sanity.io/docs/data-store/how-queries-work
@@ -24,6 +25,7 @@ async function getNavLists (id) {
     ${pageRef}
   }`
   const query = [filter, projection].join(' ')
+  fs.writeFile(`_site/navList.txt`, query, () => {})
   const docs = await client.fetch(query).catch(err => console.error(err))
   return ( docs && docs.length > 0 ) ? docs[0] : null
 }
@@ -41,7 +43,7 @@ async function getNavListsById() {
 
 // some recursive magic...
 function pageRefRecursive(navAttrs, content, iteration) {
-  if (iteration > 3) {
+  if (iteration >= 2) {
     return _pageRefRecursive( navAttrs, content );
   }else{
     return pageRefRecursive(

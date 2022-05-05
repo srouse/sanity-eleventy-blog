@@ -3,7 +3,8 @@ const util = require('util')
 const CleanCSS = require("clean-css");
 const litPlugin = require('@lit-labs/eleventy-plugin-lit');
 const { exec } = require("child_process");
-const urlFor = require("./utils/imageUrl");
+const urlFor = require("./src/utils/imageUrl");
+const {EleventyServerlessBundlerPlugin} = require('@11ty/eleventy');
 
 module.exports = function(eleventyConfig) {
 
@@ -62,8 +63,14 @@ module.exports = function(eleventyConfig) {
   });
 
   eleventyConfig.on('eleventy.after', async () => {
-    exec(`scw-components css '{./_includes/**/*,./*}.njk' './_site/ssr.css'`);
+    exec(`scw-components css './src/**/*.njk' './_site/ssr.css'`);
     console.log("rebuild cssr");
+  });
+
+  eleventyConfig.addPlugin(EleventyServerlessBundlerPlugin, {
+    name: "preview", // The serverless function name from your permalink object
+    functionsDir: "./netlify/functions/",
+    copy: ['./src/utils/','client-config.js']
   });
 
   return {
@@ -85,10 +92,10 @@ module.exports = function(eleventyConfig) {
     dataTemplateEngine: "njk",
     passthroughFileCopy: true,
     dir: {
-      input: ".",
-      includes: "_includes",
+      input: "src",
+      /*includes: "_includes",
       data: "_data",
-      output: "_site"
+      output: "_site"*/
     }
   };
 }

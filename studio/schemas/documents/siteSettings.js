@@ -33,6 +33,11 @@ export default {
       to: [{type: 'author'}]
     },
     {
+      name: 'logo',
+      type: 'mainImage',
+      title: 'Logo'
+    },
+    {
       name: 'pagesPermalink',
       type: 'string',
       description: 'The folder of the permalink for pages posts'

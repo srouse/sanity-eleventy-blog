@@ -6,6 +6,29 @@ import {
 import {
   GoHome
 } from 'react-icons/go'
+import Iframe from 'sanity-plugin-iframe-pane'
+
+const baseUrl = window.location.hostname === 'localhost' ? 'http://localhost:8888' : 'https://sanity-eleventy-blog-web-q679da9x.netlify.app/'
+
+const resolveProductionUrl = (doc) => {
+  return `${baseUrl}/preview/${doc.slug.current}/`
+}
+
+export const getDefaultDocumentNode = ({schemaType}) => {
+  if (schemaType === `post`) {
+    return S.document().views([
+      S.view.form(),
+      S.view
+        .component(Iframe)
+        .options({
+          url: (doc) => resolveProductionUrl(doc)
+        })
+        .title('Preview')
+    ])
+  }
+
+  return S.document()
+}
 
 const hiddenDocTypes = listItem =>
   ![

@@ -3,15 +3,19 @@ layout: layouts/home.njk
 tags:
   - nav
 navtitle: Home
+permalink: 
+  build: "/"
+  preview: "/preview/"
 ---
 
-<h1>{{ homePage.title }}</h1>
+<h1>{{ homePage.title }}ssss</h1>
 {{ homePage.slug }}
 {{ homePage.publishedAt }}
 
 <scw-stack scw-gap-2s>
   {%- for row in homePage.content -%}
-    <scw-flex-h 
+    <scw-flex-h
+      scw-stack-bp-md
       scw-gap-2s>
       {% set rowLoop = loop %}
       {%- for cell in row.rowLayout -%}
@@ -45,8 +49,6 @@ navtitle: Home
 {%- endfor -%}
 </ul>
 
-
-
 <ul class="nav">
   {%- for nav in collections.nav | reverse -%}
     <li 
@@ -57,7 +59,7 @@ navtitle: Home
         {% endif %}">
       <a href="{{ nav.url | url }}">
         {{ nav.data.navtitle }}
-      </a>
+      </a> 
     </li>
   {%- endfor -%}
 </ul>

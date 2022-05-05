@@ -1,3 +1,7 @@
+# Netlify
+netlify/functions/preview/*
+!netlify/functions/preview/index.js
+
 # Logs
 logs
 *.log

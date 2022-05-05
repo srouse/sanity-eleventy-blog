@@ -1,0 +1,104 @@
+<scw-flex-h
+  class="baseContent"
+  scw-height-11s
+  scw-alignment-stretch>
+  <scw-flex-v
+    scw-alignment-bottom
+    scw-padding-bottom-1s>
+    <img 
+      src="{{ urlFor(metadata.logo).width(160).url() }}"
+      alt="{{ metadata.logo.alt }}"
+      title="{{ metadata.logo.caption }}" />
+  </scw-flex-v>
+  <scw-flex-v
+    scw-alignment-stretch
+    scw-fill
+    scw-background-grey-10
+    style="
+      position: initial;
+      z-index: 100;"
+    scw-stack-bp-md>
+    <scw-flex-h
+      scw-alignment-right-bottom
+      scw-alignment-left-bp-md
+      scw-hide-bp-md
+      scw-fill>
+      <scw-menu
+        aria-label="utility menu"
+        scw-stack-bp-md>
+        {%- for navItem in navLists.utility.children -%}
+          <scw-menu-item
+            design="utility"
+            aria-label="{{ navItem.title }}"
+            icon="icon-placeholder"
+            href="{{ navItem.link.slug | url }}"
+            target="_dsys">
+          </scw-menu-item>
+        {%- endfor -%}
+        <scw-menu-item
+          design="utility"
+          icon="icon-placeholder"
+          aria-label="Design System"
+          href="{{ config.routes.designSystem | url }}"
+          target="_dsys">
+        </scw-menu-item>
+      </scw-menu>
+    </scw-flex-h>
+    <scw-flex-h
+      scw-alignment-right
+      scw-hide-bp-md
+      style="position: initial;">
+      <scw-menu
+        aria-label="main menu"
+        keyboard-direction="horizontal"
+        style="position: initial;"
+        scw-stack-bp-md>
+        {%- for navItem in navLists.main.children -%}
+          <scw-menu-item
+            design="main"
+            aria-label="{{ navItem.title }}"
+            href="{{ navItem.link.slug | url }}"
+            target="_dsys">
+          </scw-menu-item>
+          {% if navItem.children.length > 0 %}
+            <scw-menu
+              aria-label="{{ navItem.title }} menu"
+              aria-hidden="true"
+              scw-stack
+              scw-gap-2s
+              scw-padding-2s
+              scw-border-primary
+              scw-background-color-grey-10
+              style="
+                position: absolute;
+                top: 100%;
+                display: none;
+                z-index: 100;
+                left: 0; right: 0;">
+              {%- for subNavItem in navItem.children -%}
+                <scw-menu-item
+                  design="main"
+                  color="primary"
+                  aria-label="{{ subNavItem.title }}"
+                  href="{{ subNavItem.link.slug | url }}"
+                  target="_dsys">
+                </scw-menu-item>
+                {%- for subSubNavItem in subNavItem.children -%}
+                  <scw-menu-item
+                    design="main"
+                    aria-label="{{ subSubNavItem.title }}"
+                    href="{{ subSubNavItem.link.slug | url }}"
+                    target="_dsys">
+                  </scw-menu-item>
+                {%- endfor -%}
+              {%- endfor -%}
+            </scw-menu>
+          {% endif %}
+        {%- endfor -%}
+      </scw-menu>
+    </scw-flex-h>
+  </scw-flex-v>
+</scw-flex-h>
+<scw-element 
+  scw-border-bottom-grey-09>
+</scw-element>
