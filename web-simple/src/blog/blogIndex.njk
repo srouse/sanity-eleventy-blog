@@ -1,0 +1,14 @@
+{% extends "layouts/base.njk" %}
+
+{% block content %}
+<h1>BLOG LIST</h1>
+
+<div>{{ body }}</div>
+
+<ol>
+  {% for post in posts %}
+    <li><a href="{{ post.slug | url(post._type) }}">{{ post.slug | url(post._type) }}</a></li>
+  {% endfor %}
+</ol>
+
+{% endblock %}

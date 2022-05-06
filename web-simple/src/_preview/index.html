@@ -1,0 +1,41 @@
+<html>
+  <script src="../_js/nunjucks/browser/nunjucks.js"></script>
+  <script type="module">
+    import getRoutes from '../routes.js';
+    import nunjucksUtils from '../utils/nunjucksUtils.js';
+    // import getMetadata from '../dist/_data/metadata.js';
+
+    async function run() {
+      const routes = await getRoutes();
+      
+      const params = new URLSearchParams(window.location.search);
+      const route = params.get('route');
+      const routeInfo = routes.routes[route];
+      if (routeInfo) {
+        let data = {
+          context: {
+            type: 'browser',
+            route
+          }
+        };
+        await routes.data(data);
+        nunjucksUtils( nunjucks.configure('../', { autoescape: true }), data );
+        if (routeInfo.data) {
+          await routeInfo.data(data);// will decorate
+        }
+        const result = nunjucks.render(routeInfo.template, data);
+        writeHTML(result);
+      }else{
+        const result = nunjucks.render('error.njk', {error:`no route found for "${route}"`});
+        writeHTML(result);
+      }
+    }
+
+    function writeHTML(html) {
+      var newHTML = document.open("text/html", "replace");
+      newHTML.write(html);
+      newHTML.close();
+    }
+    run();
+  </script>
+</html>

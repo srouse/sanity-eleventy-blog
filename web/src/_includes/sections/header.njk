@@ -8,7 +8,13 @@
     <img 
       src="{{ urlFor(metadata.logo).width(160).url() }}"
       alt="{{ metadata.logo.alt }}"
-      title="{{ metadata.logo.caption }}" />
+      title="{{ metadata.logo.caption }}"
+      width="160" height="77" />
+    <scw-element
+      scw-text-01
+      scw-color-primary-06>
+      {{ metadata.title }}
+    </scw-element>
   </scw-flex-v>
   <scw-flex-v
     scw-alignment-stretch
