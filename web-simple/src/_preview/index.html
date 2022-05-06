@@ -6,22 +6,27 @@
     // import getMetadata from '../dist/_data/metadata.js';
 
     async function run() {
-      const routes = await getRoutes();
-      
+      // build data passed to templates
+      const data = {
+        context: {
+          type: 'browser'
+        }
+      };
+
+      // init nunjucks
+      nunjucksUtils( nunjucks.configure('../', { autoescape: true }), data );
+
+      // init routes and build global data...
+      const routes = await getRoutes(data);
+
+      // find the page to make and nunjuck it.
       const params = new URLSearchParams(window.location.search);
       const route = params.get('route');
+      data.context.route = route;
       const routeInfo = routes.routes[route];
       if (routeInfo) {
-        let data = {
-          context: {
-            type: 'browser',
-            route
-          }
-        };
-        await routes.data(data);
-        nunjucksUtils( nunjucks.configure('../', { autoescape: true }), data );
         if (routeInfo.data) {
-          await routeInfo.data(data);// will decorate
+          await routeInfo.data(data);
         }
         const result = nunjucks.render(routeInfo.template, data);
         writeHTML(result);

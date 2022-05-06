@@ -4,15 +4,16 @@ import routeLookup from './utils/routeLookup.mjs';
 import postData from './_data/post.mjs';
 import posts from './_data/posts.mjs';
 
-export default async function getRoutes() {
+export default async function getRoutes(data) {
+  // global to each page...
+  // both browser and server
+  await metadata(data);
+  // server only...
+  if (data.context.type === 'server') {
+    await posts(data);// postData will look for these first on server
+  }
+
   const routes = {
-    data: async (data) => {
-      // global to each page...
-      await metadata(data);
-      if (data.context.type === 'server') {
-        await posts(data);
-      }
-    },
     routes: {
       '/': {
         template: 'index.njk',
@@ -31,8 +32,8 @@ export default async function getRoutes() {
   }
 
   // dynamically add all the blog posts to the list
-  const postsListResult = await postsList({});
-  postsListResult.postsList.map( post => {
+  await postsList(data);
+  data.postsList.map( post => {
     const url = routeLookup(post._type, post.slug);
     routes.routes[url] = {
       template: 'blog/blog.njk',
@@ -45,6 +46,3 @@ export default async function getRoutes() {
 
   return routes;
 }
-
-
-

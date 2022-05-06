@@ -8,23 +8,21 @@ import nunjucksUtils from '../src/utils/nunjucksUtils.mjs';
 const distFolder = './dist';
 
 async function run() {
-  const routes = await getRoutes();
-  // build global data...
-
-  // walk through creating routes...
-  const routeEntries = Object.entries(routes.routes);
-  // build data
+  // build data passed to templates
   let data = {
     context: {
       type: 'server'
     }
   };
-  await routes.data(data);
-  
+
   // init nunjucks
   nunjucksUtils( nunjucks.configure('./src/', { autoescape: true }), data );
 
-  // run all the pages
+  // init routes and build global data...
+  const routes = await getRoutes(data);
+
+  // walk through creating routes...
+  const routeEntries = Object.entries(routes.routes);
   const promises = routeEntries.map( async routeEntry => {
     const route = standardizeRoute(routeEntry[0]);// check for leading slash....
     data.context.route = route;
@@ -35,7 +33,7 @@ async function run() {
       }
       const result = nunjucks.render(routeInfo.template, data);
 
-      // add web component ssr...
+      // TODO: add web component ssr and cssr...
 
       await mkdir(`${distFolder}${route}`, { recursive: true })
       return writeFile(`${distFolder}${route}/index.html`, result);
