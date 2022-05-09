@@ -7,8 +7,6 @@ import sanityConfig from '../../client-config.mjs';
   path: `.env.development`
 });*/
 
-console.log( sanityConfig );
-
 export default sanityClient({
   ...sanityConfig,
   useCdn: false,// !process.env.SANITY_READ_TOKEN,

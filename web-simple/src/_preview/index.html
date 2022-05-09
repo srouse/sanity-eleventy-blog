@@ -14,7 +14,7 @@
       };
 
       // init nunjucks
-      nunjucksUtils( nunjucks.configure('../', { autoescape: true }), data );
+      nunjucksUtils( nunjucks.configure('../_templates/', { autoescape: true }), data );
 
       // init routes and build global data...
       const routes = await getRoutes(data);

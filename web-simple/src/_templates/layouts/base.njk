@@ -20,13 +20,22 @@
     <meta name="dcterms.format" content="text/html">
     <meta name="dcterms.identifier" content="https://www.summitcreditunion.com/">
     <meta name="apple-itunes-app" content="app-id=846243037">
-    <link rel="manifest" href="/manifest.json">
     <meta name="viewport" content="
       width=device-width,
       initial-scale=1.0,
       maximum-scale=1.0,
-      user-scalable=no" />
-    
+      user-scalable=yes" />
+
+    <!-- Design System -->
+    <script type="module">
+      import {defineComponents} from '/_js/scu-web-components/dist/scw.js';
+      defineComponents();
+    </script>
+    <link rel="stylesheet" rel="preload" href="/ssr.css" />
+    <!--link rel="stylesheet" rel="preload" href="/_js/scu-web-components/dist/tokens/styles.css" /-->
+    <link rel="stylesheet" rel="preload" href="/_js/scu-web-components/dist/tokens/fonts.css" />
+    <!-- Design System END -->
+
     <!-- OSANO GDPR -->
     <script 
       async
@@ -44,19 +53,23 @@
       gtag('config', 'G-0LX5ZBPTPZ');
     </script>
     <!-- ANALYTICS END -->
-
-    <!--script type="module">
-      import {defineComponents} from '/assets/scu-web-components/scw.js';
-      defineComponents();
-    </script>
-    <link rel="stylesheet" rel="preload" href="/assets/scu-web-components/tokens/fonts.css" />
-    <link rel="stylesheet" rel="preload" href="/ssr.css" /-->
   </head>
   <body>
 
-    <h2>HEADER</h2>
-
-    <a href="{{ url('home') }}">Home</a>
+    <scw-stack
+      scw-gap-2s
+      scw-border-primary>
+      <scw-element scw-text-05>HEADER</scw-element>
+      <scw-link 
+        aria-label="Home"
+        design="text"
+        href="{{ url('home') }}">
+      </scw-link>
+      <scw-button 
+        aria-label="My Button"
+        href="javascript:">
+      </scw-button>
+    </scw-stack>
 
     {% block content %}
     {% endblock %}

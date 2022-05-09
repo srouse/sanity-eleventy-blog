@@ -3,6 +3,7 @@ import postsList from './_data/postsList.mjs';
 import routeLookup from './utils/routeLookup.mjs';
 import postData from './_data/post.mjs';
 import posts from './_data/posts.mjs';
+const tmpts = '';
 
 export default async function getRoutes(data) {
   // ====== global to each page =====
@@ -19,13 +20,13 @@ export default async function getRoutes(data) {
   const routes = {
     routes: {
       [routeLookup('home')]: {
-        template: 'index.njk',
+        template: `${tmpts}index.njk`,
         data: async (data) => {
           data.body = 'index page';
         }
       },
       [routeLookup('blogIndex')]: {
-        template: 'blog/blogIndex.njk',
+        template: `${tmpts}blog/blogIndex.njk`,
         data: async (data) => {
           await posts(data);
           data.body = 'blog page';
@@ -34,11 +35,11 @@ export default async function getRoutes(data) {
     }
   }
 
-  // Dynamically Routes
+  // Dynamic Routes
   data.postsList.map( post => {
     const url = routeLookup(post._type, post.slug);
     routes.routes[url] = {
-      template: 'blog/blog.njk',
+      template: `${tmpts}blog/blog.njk`,
       data: async (data) => {
         await postData(data, post.slug);
         await postsList(data);

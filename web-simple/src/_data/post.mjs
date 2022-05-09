@@ -24,7 +24,6 @@ export default async function post (data, slug) {
       body
     }
   `);
-  console.log('got post', slug);
-  console.log(data.post.title)
+
   return data;
 }
