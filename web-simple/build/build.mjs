@@ -25,7 +25,6 @@ async function run() {
   // init routes and build global data...
   const routes = await getRoutes(data);
 
-  console.log( ssr);
   // walk through creating routes...
   const routeEntries = Object.entries(routes.routes);
   const promises = routeEntries.map( async routeEntry => {
@@ -43,7 +42,8 @@ async function run() {
       // Make folder
       await mkdir(`${distFolder}${route}`, { recursive: true })
       // Write to Folder
-      return writeFile(`${distFolder}${route}/index.html`, ssrResult);
+      console.log(chalk.gray(`Created '${distFolder}${route}index.html'`));
+      return writeFile(`${distFolder}${route}index.html`, ssrResult);
     }
     console.error(`template not found: ${route}`);
   })

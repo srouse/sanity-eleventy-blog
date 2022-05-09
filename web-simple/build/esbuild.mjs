@@ -10,11 +10,11 @@ export default async function esbuild (
   incremental = false
   // config = {sassIncludePaths:[]}
 ) {
-  console.log('compiling and bundling typscript web comps (esbuild)');
+  console.log(chalk.grey('bundling javascript (esbuild)'));
   // collecting ts files to be processed
   const entryFiles = await glob(path.resolve('./src/**/!(*.test).mjs'));// assume the root
 
-  const plugins = buildPlugins(incremental);
+  const plugins = buildPlugins();
 
   // esbuild them...
   const buildResult = await esbuildOrig.build({
