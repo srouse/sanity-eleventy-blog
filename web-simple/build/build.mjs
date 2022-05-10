@@ -19,41 +19,22 @@ async function run() {
     }
   };
 
-  // init nunjucks
+  // Init nunjucks
   nunjucksUtils( nunjucks.configure('./src/_templates/', { autoescape: true }), data );
 
-  // init routes and build global data...
+  // Init routes and build global data...
   const routes = await getRoutes(data);
 
-  // walk through creating routes...
+  // Creating routes...
   const routeEntries = Object.entries(routes.routes);
-  const promises = routeEntries.map( async routeEntry => {
-    const route = standardizeRoute(routeEntry[0]);// check for leading slash....
-    data.context.route = route;
-    const routeInfo = routeEntry[1];
-    if (routeInfo.template) {
-      if (routeInfo.data) {
-        await routeInfo.data(data);
-      }
-      // Nunjucks Processing
-      const result = nunjucks.render(routeInfo.template, data);
-      // SSR Web Components
-      const ssrResult = await ssr(result);
-      // Make folder
-      await mkdir(`${distFolder}${route}`, { recursive: true })
-      // Write to Folder
-      console.log(chalk.gray(`Created '${distFolder}${route}index.html'`));
-      return writeFile(`${distFolder}${route}index.html`, ssrResult);
-    }
-    console.error(`template not found: ${route}`);
-  })
-  await Promise.all(promises);
-  
+  await renderPages(data, routeEntries);
+
   // CSSR
   console.log(chalk.gray(`Building CSSR`));
   exec(`scw-components css './src/_templates/**/*.njk' './dist/ssr.css'`);
+  console.log(chalk.cyan(`Building CSSR Done`));
 
-  // now build javascript in package...
+  // Package Javascript
   await esbuild();
 
   const end = new Date();
@@ -70,6 +51,35 @@ function standardizeRoute(route) {
     routeFinal = `${route}/`;
   }
   return routeFinal;
+}
+
+async function renderPages(data, routeEntries) {
+  if (routeEntries.length > 0) {
+    await renderPage(data, routeEntries.shift());
+    return await renderPages(data, routeEntries);
+  }
+  return true;
+}
+
+async function renderPage(data, routeEntry) {
+  const route = standardizeRoute(routeEntry[0]);// check for leading slash....
+  data.context.route = route;
+  const routeInfo = routeEntry[1];
+  if (routeInfo.template) {
+    if (routeInfo.data) {
+      await routeInfo.data(data);
+    }
+    // Nunjucks Processing
+    const result = await nunjucks.render(routeInfo.template, data);
+    // SSR Web Components
+    const ssrResult = await ssr(result);
+    // Make folder
+    await mkdir(`${distFolder}${route}`, { recursive: true })
+    // Write to Folder
+    console.log(chalk.gray(`Created '${distFolder}${route}index.html'`));
+    return writeFile(`${distFolder}${route}index.html`, ssrResult);
+  }
+  console.error(`template not found: ${route}`);
 }
 
 run();

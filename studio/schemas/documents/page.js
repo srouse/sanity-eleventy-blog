@@ -4,14 +4,14 @@ export default {
   title: 'Page',
   fields: [
     {
+      title: 'Title',
       name: 'title',
-      type: 'string',
-      title: 'Title'
+      type: 'string'
     },
     {
+      title: 'Slug',
       name: 'slug',
       type: 'slug',
-      title: 'Slug',
       description: 'Some frontends will require a slug to be set to be able to show the post',
       options: {
         source: 'title',
@@ -19,9 +19,9 @@ export default {
       }
     },
     {
+      title: 'Published at',
       name: 'publishedAt',
       type: 'datetime',
-      title: 'Published at',
       description: 'This can be used to schedule post for publishing'
     },
     /* {
@@ -33,13 +33,17 @@ export default {
       description: 'Which nav menu should be shown, if any'
     }, */
     {
+      title: 'Page sections',
       name: 'content',
       type: 'array',
-      title: 'Page sections',
       description: 'Add, edit, and reorder sections',
       of: [
         {type: 'rowLayoutObject'},
-        {type: 'authorReference'}
+        {type: 'authorReference'},
+        {
+          type: 'reference',
+          to: {type: 'form'}
+        }
       ]
     }
   ]

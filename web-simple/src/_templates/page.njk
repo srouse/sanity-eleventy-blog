@@ -1,0 +1,13 @@
+{% extends "layouts/base.njk" %}
+
+{% block content %}
+  <scw-text
+    scw-text-08>
+    {{ page.title }}
+  </scw-text>
+
+  {% for content in page.content %}
+    <li>{{ content.title }}</li>
+  {% endfor %}
+
+{% endblock %}

@@ -51,20 +51,37 @@
   </head>
   <body>
 
-    <scw-stack
-      scw-gap-2s
-      scw-border-primary>
-      <scw-element scw-text-05>HEADER</scw-element>
-      <scw-link 
-        aria-label="Home"
-        design="text"
-        href="{{ url('home') }}">
-      </scw-link>
-      <scw-button 
-        aria-label="My Button"
-        href="javascript:">
-      </scw-button>
-    </scw-stack>
+    <scu-stack>
+      <scw-flex-h
+        scw-gap-2s
+        scw-border-primary
+        scw-height-10s>
+        <scw-element scw-text-05>
+          Summit Logo
+        </scw-element>
+        <scw-fill></scw-fill>
+        <scw-menu-item 
+          aria-label="Home"
+          design="main"
+          href="{{ url('home') }}">
+        </scw-menu-item>
+        <scw-menu-item 
+          aria-label="Form Example"
+          design="main"
+          href="{{ url('page', 'form-example') }}">
+        </scw-menu-item>
+        <scw-menu-item 
+          aria-label="Design System"
+          design="main"
+          href="{{ url('direct', '/_js/scu-web-components/dist/docs/') }}"
+          target="_dsys">
+        </scw-menu-item>
+        <scw-button 
+          aria-label="A Button"
+          href="javascript:">
+        </scw-button>
+      </scw-flex-h>
+    </scu-stack>
 
     {% block content %}
     {% endblock %}

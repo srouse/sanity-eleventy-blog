@@ -1,24 +1,7 @@
 {% extends "layouts/base.njk" %}
 
 {% block content %}
-<scw-stack
-  scw-gap-4s
-  scw-border-primary>
-  <scw-element scw-text-05>BLOG</scw-element>
-  <scw-link 
-    aria-label="Home"
-    design="text"
-    href="{{ url('home') }}">
-  </scw-link>
-  <scw-button 
-    aria-label="My Button"
-    href="javascript:">
-  </scw-button>
-</scw-stack>
+  <a href="{{ url('blogIndex') }}">All Blog Posts</a>
 
-<a href="{{ url('blogIndex') }}">All Blog Posts</a>
-
-<h2>{{ post.title }}</h2>
-
-
+  <h2>{{ post.title }}</h2>
 {% endblock %}

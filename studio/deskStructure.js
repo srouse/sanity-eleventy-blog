@@ -37,7 +37,8 @@ const hiddenDocTypes = listItem =>
     'post',
     'siteSettings',
     'pageLayout',
-    'navList'
+    'navList',
+    'form'
   ].includes(listItem.getId())
 
 export default () =>
@@ -71,6 +72,10 @@ export default () =>
         .title('Blog posts')
         .schemaType('post')
         .child(S.documentTypeList('post').title('Blog posts')),
+      S.listItem()
+        .title('Forms')
+        .schemaType('form')
+        .child(S.documentTypeList('form').title('Forms')),
       S.listItem()
         .title('Authors')
         .icon(MdPerson)

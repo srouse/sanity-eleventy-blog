@@ -25,6 +25,11 @@ import page from './documents/page'
 import postReference from './objects/postReference'
 import navList from './navigation/navList'
 
+// Forms
+import form from './forms/form'
+import input from './forms/elements/input'
+import validation from './forms/elements/validation'
+
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
   // We name our schema
@@ -51,7 +56,11 @@ export default createSchema({
     page,
     postReference,
 
-    navList
+    navList,
+
+    form,
+    input,
+    validation
 
     // When added to this list, object types can be used as
     // { type: 'typename' } in other document schemas
