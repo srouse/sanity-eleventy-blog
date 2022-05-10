@@ -1,6 +1,5 @@
 <scw-form
   scw-width-colvw-6
-  scw-stack-initial
   scw-gap-1s
   style="max-width: 700px; margin: 0 auto;">
   <scw-text
@@ -39,6 +38,8 @@
       ) {
         return;
       }
+
+      resultsFeedback.innerHTML = "Submitting...";
       var formData = new FormData();
       for ( var key in evt.detail.data ) {
         formData.append(key, evt.detail.data[key]);

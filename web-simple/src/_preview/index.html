@@ -37,10 +37,27 @@
     }
 
     function writeHTML(html) {
+      // browser sync needs to inject something into the body...so pass it on.
+      const bodyContent = document.body.innerHTML;
       var newHTML = document.open("text/html", "replace");
-      newHTML.write(html);
+      newHTML.write(`${html} ${bodyContent}`);
       newHTML.close();
     }
     run();
   </script>
+  <style>
+    body {
+      background-color: #eee;
+    }
+    body::after {
+      content: 'loading...';
+      position: absolute;
+      top: 0; bottom: 0;
+      left: 0; right: 0;
+      text-align: center;
+      padding-top: 300px;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+  </style>
+  <body></body>
 </html>

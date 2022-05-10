@@ -10,7 +10,7 @@ export default async function esbuild (
   incremental = false
   // config = {sassIncludePaths:[]}
 ) {
-  console.log(chalk.grey('Bundling Javascript (esbuild)'));
+  console.log(chalk.yellow('ESBuild Started'));
   // collecting ts files to be processed
   const entryFiles = await glob(path.resolve('./src/**/!(*.test).mjs'));// assume the root
 
@@ -39,7 +39,7 @@ export default async function esbuild (
     process.exit(1);
   });
   
-  console.log(chalk.cyan('Bundling Javascript Done\n'));
+  console.log(chalk.cyan('ESBuild Done\n'));
 
   return buildResult;
 };

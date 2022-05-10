@@ -9,6 +9,41 @@ export default function routeLookup( _type, slug ) {
     case 'home' :
       return `/`;
     case 'blogIndex' :
-      return POST_INDEX;
+      return `${POST_INDEX}`;
   }
 }
+
+/*
+// Need to go forwards and reverse...thinking this out...
+// {_type:'post',slug:'my-post'} <= & => '/post/my-post'
+export const routeTemplates = [
+  {
+    type: 'home',
+    template: `/`,
+    data: async (data) => {
+      await homePage(data);
+    }
+  },
+  {
+    type: 'blogIndex',
+    template: `/blog/blogIndex.njk`,
+    data: async (data) => {
+      await posts(data);
+    }
+  },
+  {
+    type: 'page',
+    template: `/:slug`,
+    data: async (data, slug) => {
+      await pageData(data, slug);
+    }
+  },
+  {
+    type: 'post',
+    template: `/posts/:slug`,
+    data: async (data, slug) => {
+      await postData(data, slug);
+    }
+  }
+];
+*/

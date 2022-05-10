@@ -27,7 +27,8 @@ export default async function getRoutes(data) {
 
   // add some route lookups
   data.urls = {
-    'DESIGN_SYSTEM_URL': '/_js/scu-web-components/dist/docs/'
+    'DESIGN_SYSTEM_URL': '/_js/scu-web-components/dist/docs/',
+    'PREVIEW': '/_preview/?route=/'
   };
 
   // Routes
@@ -57,7 +58,6 @@ export default async function getRoutes(data) {
       template: `${tmpts}blog/blog.njk`,
       data: async (data) => {
         await postData(data, post.slug);
-        await postsList(data);
       }
     };
   });
