@@ -1,4 +1,5 @@
 import routeLookup from "./routeLookup.mjs";
+import imageUrl from './imageUrl.mjs';
 
 export default function(env, data) {
   // {{ url('home') }}
@@ -16,4 +17,14 @@ export default function(env, data) {
     }
     return `${previewRoute}${finalUrl}`;
   })
+
+  env.addGlobal('rowFillsByIndex', (fills, index) => {
+    const fillsArray = fills.split(',');
+    if (fillsArray.length > index) {
+      return parseInt( fillsArray[index] );
+    }
+    return 1;
+  });
+
+  env.addGlobal("imageUrl", imageUrl);
 }

@@ -1,4 +1,5 @@
 import metadata from './_data/metadata.mjs';
+import navLists from './_data/navLists.mjs';
 import postsList from './_data/postsList.mjs';
 import routeLookup from './utils/routeLookup.mjs';
 import postData from './_data/post.mjs';
@@ -6,6 +7,7 @@ import posts from './_data/posts.mjs';
 import pageList from './_data/pageList.mjs';
 import pageData from './_data/page.mjs';
 import pages from './_data/pages.mjs';
+import homePage from './_data/homePage.mjs';
 
 const tmpts = '';
 
@@ -13,6 +15,7 @@ export default async function getRoutes(data) {
   // ====== global to each page =====
   // both browser and server
   await metadata(data);
+  await navLists(data);
   await postsList(data); // can't make a post lookup w/o
   await pageList(data); // can't make a post lookup w/o
 
@@ -22,20 +25,24 @@ export default async function getRoutes(data) {
     await pages(data);// 'pageData' will look for this data in the server build
   }
 
+  // add some route lookups
+  data.urls = {
+    'DESIGN_SYSTEM_URL': '/_js/scu-web-components/dist/docs/'
+  };
+
   // Routes
   const routes = {
     routes: {
       [routeLookup('home')]: {
         template: `${tmpts}index.njk`,
         data: async (data) => {
-          data.body = 'index page';
+          await homePage(data);
         }
       },
       [routeLookup('blogIndex')]: {
         template: `${tmpts}blog/blogIndex.njk`,
         data: async (data) => {
           await posts(data);
-          data.body = 'blog page';
         }
       }
     }

@@ -4,10 +4,22 @@ export default {
   title: 'Form',
   fields: [
     {
+      title: 'Title',
       name: 'title',
       type: 'string',
-      title: 'Title',
       validation: Rule => Rule.required()
+    },
+    {
+      title: 'Description',
+      name: 'description',
+      type: 'string',
+      description: 'Introductory text for the form'
+    },
+    {
+      title: 'Form Endpoint',
+      name: 'endpoint',
+      type: 'string',
+      description: 'The full url of where the form should be submitted.'
     },
     {
       title: 'Inputs',
@@ -16,6 +28,9 @@ export default {
       of: [
         {
           type: 'input'
+        },
+        {
+          type: 'formRow'
         }
       ]
     }

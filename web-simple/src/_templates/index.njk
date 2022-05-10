@@ -1,10 +1,28 @@
 {% extends "layouts/base.njk" %}
 
 {% block content %}
-<h1>INDEX</h1>
-
-<div>{{ body }}</div>
-
-<a href="{{ url('blogIndex') }}">Blog Posts</a>
-
+  <scw-stack
+    class="baseContent"
+    scw-gap-2s
+    scw-padding-top-2s>
+    {%- for row in homePage.content -%}
+      <scw-flex-h
+        scw-stack-bp-md
+        scw-gap-2s>
+        {% set rowLoop = loop %}
+        {%- for cell in row.rowLayout -%}
+          <scw-card scw-fill
+            src="{{ imageUrl(cell.mainImage).width(400).url() }}"
+            alt="img alt text"
+            heading="{{ cell.title }}"
+            href="{{ url( cell._type, cell.slug ) }}"
+            aria-label="{{ cell.title }}"
+            preload
+            size="{% if rowLoop.index == 1 %}large{% elif rowLoop.index == 2 %}medium{% else %}small{% endif %}"
+            description="{{ cell.excerpt }}">
+          </scw-card>
+        {%- endfor -%}
+      </scw-flex-h>
+    {%- endfor -%}
+  </scw-stack>
 {% endblock %}

@@ -1,13 +1,21 @@
 {% extends "layouts/base.njk" %}
 
 {% block content %}
-  <scw-text
-    scw-text-08>
-    {{ page.title }}
-  </scw-text>
+  <scw-stack
+    class="baseContent"
+    scw-padding-top-3s
+    scw-gap-2s>
 
-  {% for content in page.content %}
-    <li>{{ content.title }}</li>
-  {% endfor %}
+    <scw-element
+      scw-text-08>
+      {{ page.title }}
+    </scw-element>
 
+    {% for content in page.content %}
+      {% if content._type == 'form' %}
+        {% set form = content %}
+        {% include "layouts/form.njk" %}
+      {% endif %}
+    {% endfor %}
+  </scw-stack>
 {% endblock %}

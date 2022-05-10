@@ -48,47 +48,37 @@
       gtag('config', 'G-0LX5ZBPTPZ');
     </script>
     <!-- ANALYTICS END -->
+
+    <style>
+      html, body {
+        padding: 0; margin: 0;
+      }
+
+      .baseContent {
+        max-width: 1200px;
+        margin: 0 auto;
+        /* transition: padding 0.3s; */
+      }
+
+      @media screen and (min-width: 0px) and (max-width: 1240px) {
+        .baseContent {
+          padding-left: var( --scw-colvw-0-6 );
+          padding-right: var( --scw-colvw-0-6 );
+        }
+      }
+    </style>
   </head>
-  <body>
+  <body
+    scw-text-05
+    scw-background-grey-10>
 
-    <scu-stack>
-      <scw-flex-h
-        scw-gap-2s
-        scw-border-primary
-        scw-height-10s>
-        <scw-element scw-text-05>
-          Summit Logo
-        </scw-element>
-        <scw-fill></scw-fill>
-        <scw-menu-item 
-          aria-label="Home"
-          design="main"
-          href="{{ url('home') }}">
-        </scw-menu-item>
-        <scw-menu-item 
-          aria-label="Form Example"
-          design="main"
-          href="{{ url('page', 'form-example') }}">
-        </scw-menu-item>
-        <scw-menu-item 
-          aria-label="Design System"
-          design="main"
-          href="{{ url('direct', '/_js/scu-web-components/dist/docs/') }}"
-          target="_dsys">
-        </scw-menu-item>
-        <scw-button 
-          aria-label="A Button"
-          href="javascript:">
-        </scw-button>
-      </scw-flex-h>
-    </scu-stack>
+    <scw-stack>
+      {% include "sections/header.njk" %}
 
-    {% block content %}
-    {% endblock %}
+      {% block content %}
+      {% endblock %}
 
-    <div>
-      Current page: {{ context.route }}
-      Type: {{ context.type }} 
-    </div>
+      {% include "sections/footer.njk" %}
+    </scw-stack>
   </body>
 </html>

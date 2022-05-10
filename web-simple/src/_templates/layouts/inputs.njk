@@ -1,0 +1,50 @@
+{% macro renderInput(input, fill ) %}
+  {% if input._type == 'input' %}
+    <scw-input
+      style="flex: {{ fill }};"
+      aria-label="{{ input.label }}"
+      name="{{ input.name }}">
+      {% if input.validation %}
+        {{ renderValidation(input.validation) }}
+      {% endif %}
+    </scw-input>
+  {% endif %}
+{% endmacro %}
+
+{% macro renderValidation(validation) %}
+  <scw-validation>
+    {% if validation.required %}
+      <scw-validate
+        type="required"
+        {% if validation.customFeedback %}
+          feedback="{{ validation.customFeedback }}"
+        {% endif %}>
+      </scw-validation>
+    {% endif %}
+    {% if validation.alphanumericRequired %}
+      <scw-validate
+        type="alphanumeric">
+      </scw-validation>
+    {% endif %}
+    {% if validation.numberRequired %}
+      <scw-validate
+        type="number">
+      </scw-validation>
+    {% endif %}
+  </scw-validation>
+{% endmacro %}
+
+{% if input._type == 'formRow' %}
+  <scw-flex-h>
+    {% for rowInput in input.rowLayout %}
+      {{ 
+        renderInput( 
+          rowInput,
+          rowFillsByIndex( input.rowFills, loop.index0 ) 
+        )
+      }}
+    {% endfor %}
+  </scw-flex-h>
+{% else %}
+  {{ renderInput( input, 1 ) }}
+{% endif %}

@@ -1,14 +1,15 @@
 {% extends "layouts/base.njk" %}
 
 {% block content %}
-<h1>BLOG LIST</h1>
+  <scw-stack class="baseContent">
+    <h1>BLOG LIST</h1>
 
-<div>{{ body }}</div>
+    <div>{{ body }}</div>
 
-<ol>
-  {% for post in posts %}
-    <li><a href="{{ url(post._type, post.slug) }}">{{ url(post._type, post.slug) }}</a></li>
-  {% endfor %}
-</ol>
-
+    <ol>
+      {% for post in posts %}
+        <li><a href="{{ url(post._type, post.slug) }}">{{ url(post._type, post.slug) }}</a></li>
+      {% endfor %}
+    </ol>
+  </scw-stack>
 {% endblock %}
