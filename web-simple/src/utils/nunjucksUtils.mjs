@@ -1,5 +1,5 @@
-import routeLookup from "./routeLookup.mjs";
 import imageUrl from './imageUrl.mjs';
+import { router } from "../routes.mjs";
 
 export default function(env, data) {
   // {{ url('home') }}
@@ -12,7 +12,8 @@ export default function(env, data) {
       if (_type === 'direct') {
         previewRoute = '';
       }else{
-        finalUrl = routeLookup(_type, url);
+        const route = router.routeViaId(_type, [url]);
+        finalUrl = route.url;
       }
     }
     return `${previewRoute}${finalUrl}`;

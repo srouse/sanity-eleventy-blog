@@ -47,12 +47,22 @@
           href="{{ url( 'direct', urls.DESIGN_SYSTEM_URL ) }}"
           target="_dsys">
         </scw-menu-item>
-        <scw-menu-item
-          design="utility"
-          icon="icon-placeholder"
-          aria-label="Preview"
-          href="{{ url( 'direct', urls.PREVIEW ) }}">
-        </scw-menu-item>
+        {% if context.type == 'server' %}
+          {% set previewUrl = [urls.PREVIEW, context.route] | join %}
+          <scw-menu-item
+            design="utility"
+            icon="icon-placeholder"
+            aria-label="Preview"
+            href="{{ url( 'direct', previewUrl ) }}">
+          </scw-menu-item>
+        {% else %}
+          <scw-menu-item
+            design="utility"
+            icon="icon-placeholder"
+            aria-label="Static"
+            href="{{ url( 'direct', context.route ) }}">
+          </scw-menu-item>
+        {% endif %}
       </scw-menu>
     </scw-flex-h>
     <scw-flex-h

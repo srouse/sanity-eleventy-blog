@@ -7,7 +7,7 @@
     <div>{{ body }}</div>
 
     <ol>
-      {% for post in posts %}
+      {% for post in postsList %}
         <li><a href="{{ url(post._type, post.slug) }}">{{ url(post._type, post.slug) }}</a></li>
       {% endfor %}
     </ol>

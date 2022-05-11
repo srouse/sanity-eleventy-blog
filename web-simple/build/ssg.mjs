@@ -30,8 +30,7 @@ export default async function ssg() {
   const routes = await getRoutes(data);
 
   // Creating routes...
-  const routeEntries = Object.entries(routes.routes);
-  await renderPages(data, routeEntries);
+  await renderPages(data, routes.routes );
 
   console.log(chalk.cyan(`SSG Done\n`));
 }
@@ -57,9 +56,10 @@ async function renderPages(data, routeEntries) {
 }
 
 async function renderPage(data, routeEntry) {
-  const route = standardizeRoute(routeEntry[0]);// check for leading slash....
+  const route = standardizeRoute(routeEntry.url);// check for leading slash....
+  const routeInfo = routeEntry;//routeEntry[1];
+
   data.context.route = route;
-  const routeInfo = routeEntry[1];
   if (routeInfo.template) {
     if (routeInfo.data) {
       await routeInfo.data(data);

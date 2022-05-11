@@ -1,9 +1,8 @@
 <html>
   <script src="../_js/nunjucks/browser/nunjucks.js"></script>
   <script type="module">
-    import getRoutes from '../routes.js';
+    import getRoutes, { router } from '../routes.js';
     import nunjucksUtils from '../utils/nunjucksUtils.js';
-    // import getMetadata from '../dist/_data/metadata.js';
 
     async function run() {
       // build data passed to templates
@@ -14,7 +13,7 @@
       };
 
       // init nunjucks
-      nunjucksUtils( nunjucks.configure('../_templates/', { autoescape: true }), data );
+      nunjucksUtils(nunjucks.configure('../_templates/', { autoescape: true }), data );
 
       // init routes and build global data...
       const routes = await getRoutes(data);
@@ -23,7 +22,11 @@
       const params = new URLSearchParams(window.location.search);
       const route = params.get('route');
       data.context.route = route;
-      const routeInfo = routes.routes[route];
+
+      const routeInfo = router.routeViaUrl(route);
+      const routeInfo2 = routes.routes[route];
+      console.log( routeInfo );
+      console.log( routeInfo2 );
       if (routeInfo) {
         if (routeInfo.data) {
           await routeInfo.data(data);
@@ -50,7 +53,7 @@
       background-color: #eee;
     }
     body::after {
-      content: 'loading...';
+      content: 'loading preview...';
       position: absolute;
       top: 0; bottom: 0;
       left: 0; right: 0;

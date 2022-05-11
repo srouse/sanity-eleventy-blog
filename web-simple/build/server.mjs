@@ -50,7 +50,8 @@ export async function server(buildResult, withSSG) {
   });
 
   browser.watch([// REBUILD
-      'src/**'
+      'src/**',
+      'build/**'
     ],{
       // ignored: [// brackets are not accepted, so use arrays
       //   'src/**/+(tests)/*',  // don't watch anything in tests
