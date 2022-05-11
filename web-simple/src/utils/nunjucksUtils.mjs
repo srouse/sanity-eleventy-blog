@@ -5,9 +5,13 @@ export default function(env, data) {
   // {{ url('home') }}
   // {{ url('post', 'my-post') }}
   env.addGlobal('url', (_type, url) => {
-    const isPreview = data.context.type === 'browser';
     let finalUrl = url;
-    let previewRoute = isPreview ? '/_preview/?route=' : ''
+    let previewRoute = '';
+    if (data.context.type === 'browser') {
+      previewRoute = '/_preview/?route=';
+    }else if (data.context.type === 'browser-dynamic') {
+      previewRoute = '/_dynamic';
+    }
     if (_type) {
       if (_type === 'direct') {
         previewRoute = '';

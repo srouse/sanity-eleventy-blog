@@ -4,6 +4,9 @@ import chalk from 'chalk';
 import cssr from './cssr.mjs';
 import ssg from './ssg.mjs';
 import esbuild from './esbuild.mjs';
+import path from 'path';
+
+const __dirname = path.resolve(path.dirname(''));
 
 export async function buildAndServe(withSSG = false) {
   if (withSSG) {
@@ -46,7 +49,22 @@ export async function server(buildResult, withSSG) {
     server: {
       baseDir: './dist',
       directory: false
+    },
+    ui: {
+      port: 8081
     }
+  }, (err, bs) => {
+    bs.addMiddleware("*", (req, res) => {
+      const dynamicContent = fs.readFileSync(
+        `${__dirname}/src/_preview/index.html`,
+        {encoding:'utf8', flag:'r'}
+      );
+      const path = req.originalUrl.replace('/_dynamic', '');
+      const finalContent = dynamicContent.replace('run();', `run('${path}');`);
+      // Provides the 404 content without redirect.
+      res.write(finalContent);
+      res.end();
+    });
   });
 
   browser.watch([// REBUILD

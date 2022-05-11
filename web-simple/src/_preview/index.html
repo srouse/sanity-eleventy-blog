@@ -1,32 +1,34 @@
 <html>
-  <script src="../_js/nunjucks/browser/nunjucks.js"></script>
+  <script src="/_js/nunjucks/browser/nunjucks.js"></script>
   <script type="module">
-    import getRoutes, { router } from '../routes.js';
-    import nunjucksUtils from '../utils/nunjucksUtils.js';
+    import getRoutes, { router } from '/routes.js';
+    import nunjucksUtils from '/utils/nunjucksUtils.js';
 
-    async function run() {
+    async function run(route) {
+      
       // build data passed to templates
       const data = {
-        context: {
-          type: 'browser'
-        }
+        context: {}
       };
 
       // init nunjucks
-      nunjucksUtils(nunjucks.configure('../_templates/', { autoescape: true }), data );
+      nunjucksUtils(nunjucks.configure('/_templates/', { autoescape: true }), data );
 
       // init routes and build global data...
       const routes = await getRoutes(data);
 
       // find the page to make and nunjuck it.
-      const params = new URLSearchParams(window.location.search);
-      const route = params.get('route');
-      data.context.route = route;
+      if (!route) {
+        const params = new URLSearchParams(window.location.search);
+        const routeParam = params.get('route');
+        data.context.route = routeParam;
+        data.context.type = 'browser';
+      }else{
+        data.context.route = route;
+        data.context.type = 'browser-dynamic';
+      }
 
-      const routeInfo = router.routeViaUrl(route);
-      const routeInfo2 = routes.routes[route];
-      console.log( routeInfo );
-      console.log( routeInfo2 );
+      const routeInfo = router.routeViaUrl(data.context.route);
       if (routeInfo) {
         if (routeInfo.data) {
           await routeInfo.data(data);
@@ -34,7 +36,10 @@
         const result = nunjucks.render(routeInfo.template, data);
         writeHTML(result);
       }else{
-        const result = nunjucks.render('error.njk', {error:`no route found for "${route}"`});
+        const result = nunjucks.render(
+          'error.njk',
+          {error:`no route found for "${data.context.route}"`}
+        );
         writeHTML(result);
       }
     }
