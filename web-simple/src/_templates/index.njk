@@ -12,7 +12,7 @@
         {% set rowLoop = loop %}
         {%- for cell in row.rowLayout -%}
           <scw-card scw-fill
-            src="{{ imageUrl(cell.mainImage).width(400).url() }}"
+            src="{{ imageUrl(cell.mainImage, {width:400}) }}"
             alt="img alt text"
             heading="{{ cell.title }}"
             href="{{ url( cell._type, cell.slug ) }}"

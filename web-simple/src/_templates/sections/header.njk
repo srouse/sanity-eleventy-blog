@@ -10,7 +10,7 @@
       aria-label="I'm a div"
       href="{{ url( 'page', '') }}">
       <img 
-        src="{{ imageUrl(metadata.logo).width(160).url() }}"
+        src="{{ imageUrl(metadata.logo, {width:160}) }}"
         alt="{{ metadata.logo.alt }}"
         title="{{ metadata.logo.caption }}"
         width="160" height="77" />

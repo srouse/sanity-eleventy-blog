@@ -6,6 +6,7 @@ import nunjucksUtils from '../src/utils/nunjucksUtils.mjs';
 import {ssr} from 'scu-web-components/scripts/ssr.mjs';
 
 const distFolder = './dist';
+const assetsFolder = `${distFolder}/_assets`;
 
 export default async function ssg() {
   console.log(chalk.yellow(`SSG Started`));
@@ -31,6 +32,9 @@ export default async function ssg() {
 
   // Creating routes...
   await renderPages(data, routes.routes );
+
+  // saving images...
+  await cacheImages(data);
 
   console.log(chalk.cyan(`SSG Done\n`));
 }
@@ -75,4 +79,30 @@ async function renderPage(data, routeEntry) {
     return writeFile(`${distFolder}${route}index.html`, ssrResult);
   }
   console.error(`template not found: ${route}`);
+}
+
+async function cacheImages(data) {
+  console.log(chalk.yellow(`\nImage Caching Started`));
+  await mkdir(`${assetsFolder}`, { recursive: true });
+  const imageEntries = Object.entries(data.context.images);
+  const imagePromiseArray = [];
+  imageEntries.map(imgInfo => {
+    imagePromiseArray.push(new Promise(async (resolve) => {
+      const name = imgInfo[0];
+      const url = imgInfo[1];
+      await fetch(url)
+        .then(response => response.arrayBuffer())
+        .then(imageBlob => {
+          console.log(chalk.gray(`Cached '${assetsFolder}/${name}'`));
+          return writeFile(
+            `${assetsFolder}/${name}`,
+            Buffer.from(imageBlob)
+          );
+        });
+      resolve();
+    }));
+  });
+  return Promise.all(imagePromiseArray).then(() => {
+    console.log(chalk.cyan(`Image Cache Done\n`));
+  });
 }
