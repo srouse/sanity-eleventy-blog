@@ -4,6 +4,7 @@ import getRoutes from '../src/routes.mjs';
 import {writeFile, mkdir} from 'fs/promises';
 import nunjucksUtils from '../src/utils/nunjucksUtils.mjs';
 import {ssr} from 'scu-web-components/scripts/ssr.mjs';
+import { configImages } from '../src/utils/imageUrl.mjs';
 
 const distFolder = './dist';
 const assetsFolder = `${distFolder}/_assets`;
@@ -17,6 +18,9 @@ export default async function ssg() {
       type: 'server'
     }
   };
+
+  // give images access to data
+  configImages(data);
 
   // Init Nunjucks
   nunjucksUtils(

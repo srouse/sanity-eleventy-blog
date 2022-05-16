@@ -7,7 +7,6 @@ import pageData from './_data/page.mjs';
 import pages from './_data/pages.mjs';
 import homePage from './_data/homePage.mjs';
 import { RouteTemplates } from './utils/RouteTemplates.mjs';
-import { configImages } from './utils/imageUrl.mjs';
 
 export const router = new RouteTemplates(
   [
@@ -48,9 +47,6 @@ export const router = new RouteTemplates(
 );
 
 export default async function getRoutes(data) {
-
-  configImages(data);
-
   // ====== global to each page =====
   // both browser and server
   await metadata(data);

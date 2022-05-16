@@ -25,14 +25,18 @@ export default function imageUrl(source, config ) {
   const imgName = urlArr.pop();
   const imgNameClean = imgName.replace('?', '-');
 
-  if (data.context.type === 'server') {
+  if (
+    data &&
+    data.context &&
+    data.context.type === 'server'
+  ) {
     if (!data.context.images) {
       data.context.images = {};
     }
     data.context.images[imgNameClean] = url;
     return `/_assets/${imgNameClean}`;
   }else{
-    return url;// want to pull from sanity here...
+    return url;// want to pull from sanity for preview...
   }
 }
 
