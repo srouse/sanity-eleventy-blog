@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "build": "node -e \"import('./build/build.mjs').then(mod => mod.default());\"",
-    "build:watch": "node -e \"import('./build/server.mjs').then(mod => mod.buildAndServe());\"",
-    "build:watch:ssg": "node -e \"import('./build/server.mjs').then(mod => mod.buildAndServe(true));\"",
+    "build:watch": "npm run build && node -e \"import('./build/server.mjs').then(mod => mod.buildAndServe());\"",
+    "build:watch:ssg": "npm run build && node -e \"import('./build/server.mjs').then(mod => mod.buildAndServe(true));\"",
+    "dev": "npm run build:watch:ssg",
     "esbuild": "node ./build/esbuild.mjs",
     "server": "http-server ./dist/",
     "test": "echo \"Error: no test specified\" && exit 1"

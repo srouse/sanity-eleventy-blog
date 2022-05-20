@@ -16,9 +16,9 @@ export default {
       description: 'Describe your blog for search engines and social media.'
     },
     {
+      title: 'Keywords',
       name: 'keywords',
       type: 'array',
-      title: 'Keywords',
       description: 'Add keywords that describes your blog.',
       of: [{type: 'string'}],
       options: {

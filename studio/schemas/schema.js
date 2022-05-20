@@ -9,6 +9,7 @@ import author from './documents/author'
 import category from './documents/category'
 import post from './documents/post'
 import siteSettings from './documents/siteSettings'
+import role from './documents/role'
 
 // Object types
 import bodyPortableText from './objects/bodyPortableText'
@@ -31,6 +32,9 @@ import input from './forms/elements/input'
 import validation from './forms/elements/validation'
 import formRow from './forms/elements/formRow'
 
+// Summit Central
+import scntLink from './summitCentral/scntLink'
+
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
   // We name our schema
@@ -49,6 +53,7 @@ export default createSchema({
     bodyPortableText,
     bioPortableText,
     excerptPortableText,
+    role,
 
     pageLayout,
     rowLayout,
@@ -62,7 +67,9 @@ export default createSchema({
     form,
     input,
     validation,
-    formRow
+    formRow,
+
+    scntLink
 
     // When added to this list, object types can be used as
     // { type: 'typename' } in other document schemas

@@ -38,7 +38,9 @@ const hiddenDocTypes = listItem =>
     'siteSettings',
     'pageLayout',
     'navList',
-    'form'
+    'form',
+    'scntLink',
+    'role'
   ].includes(listItem.getId())
 
 export default () =>
@@ -85,6 +87,26 @@ export default () =>
         .title('Categories')
         .schemaType('category')
         .child(S.documentTypeList('category').title('Categories')),
+      S.listItem()
+        .title('Summit Central')
+        .child(
+          S.list()
+            .title('Summit Central')
+            .items([
+              S.listItem()
+                .title('Links / Folders')
+                .schemaType('scntLink')
+                .child(
+                  S.documentTypeList('scntLink').title('Summit Central Links')
+                ),
+              S.listItem()
+                .title('Roles')
+                .schemaType('role')
+                .child(
+                  S.documentTypeList('role').title('Summit Roles')
+                )
+            ])
+        ),
       // This returns an array of all the document types
       // defined in schema.js. We filter out those that we have
       // defined the structure above

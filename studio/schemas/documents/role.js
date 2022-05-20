@@ -1,7 +1,7 @@
 export default {
-  name: 'category',
+  name: 'role',
   type: 'document',
-  title: 'Category',
+  title: 'Employee Role',
   fields: [
     {
       title: 'Title',
