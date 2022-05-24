@@ -1,4 +1,4 @@
-export class RouteTemplates {
+export default class Router {
   constructor( templates ) {
     this.templates = templates;
   }

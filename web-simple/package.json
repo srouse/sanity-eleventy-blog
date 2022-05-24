@@ -7,7 +7,7 @@
     "build": "node -e \"import('./build/build.mjs').then(mod => mod.default());\"",
     "build:watch": "npm run build && node -e \"import('./build/server.mjs').then(mod => mod.buildAndServe());\"",
     "build:watch:ssg": "npm run build && node -e \"import('./build/server.mjs').then(mod => mod.buildAndServe(true));\"",
-    "dev": "npm run build:watch:ssg",
+    "dev": "npm run build:watch",
     "esbuild": "node ./build/esbuild.mjs",
     "server": "http-server ./dist/",
     "test": "echo \"Error: no test specified\" && exit 1"

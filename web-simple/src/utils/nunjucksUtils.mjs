@@ -1,5 +1,5 @@
 import imageUrl from './imageUrl.mjs';
-import { router } from "../routes.mjs";
+import router from '../router.mjs';
 
 export default function(env, data) {
   // {{ url('home') }}
