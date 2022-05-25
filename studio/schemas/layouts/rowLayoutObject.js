@@ -32,12 +32,6 @@ export default {
           to: {
             type: 'post'
           }
-        },
-        {
-          type: 'authorReference'
-        },
-        {
-          type: 'mainImage'
         }
       ]
     }

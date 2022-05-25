@@ -115,6 +115,11 @@
         {%- endfor -%}
         <scw-menu-item
           design="main"
+          aria-label="Contentful Page"
+          href="{{ url( 'contentful-page', 'another-page') }}">
+        </scw-menu-item>
+        <scw-menu-item
+          design="main"
           aria-label="Blog Posts"
           href="{{ url( 'blogIndex') }}">
         </scw-menu-item>

@@ -3,14 +3,16 @@ import navLists from './_data/navLists.mjs';
 import posts from './_data/posts.mjs';
 import pages from './_data/pages.mjs';
 import router from './router.mjs';
+import contentfulPages from './_data/contentful/pages.mjs';
 
 export default async function getRoutes(data) {
   // ====== global to each page =====
   // both browser and server
   await metadata(data);
   await navLists(data); // main, utility and other navs...
+  // await space(data);// contentful example
 
-  // add some route lookups
+  // route lookups
   data.urls = {
     'DESIGN_SYSTEM_URL': '/_js/scu-web-components/dist/docs/',
     'PREVIEW': '/_preview/?route='
@@ -33,6 +35,18 @@ export default async function getRoutes(data) {
       const routeInfo = router.routeViaId(page._type, [page.slug] );
       routes.push(routeInfo);
     });
+
+    // contentful pages...
+    await contentfulPages(data);
+    data.contentfulPages.items.map(page => {
+      routes.push(
+        router.routeViaId(
+          'contentful-page',
+          [page.fields.slug] 
+        )
+      );
+    })
+
   }
   return routesObj;
 }

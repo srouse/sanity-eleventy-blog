@@ -1,5 +1,6 @@
-import imageUrl from './imageUrl.mjs';
+import {imageUrl} from './sanityClient.mjs';
 import router from '../router.mjs';
+import {imageUrl as contentfulImageUrl} from './contentfulClient.mjs';
 
 export default function(env, data) {
   // {{ url('home') }}
@@ -32,4 +33,5 @@ export default function(env, data) {
   });
 
   env.addGlobal("imageUrl", imageUrl);
+  env.addGlobal("contentfulImageUrl", contentfulImageUrl);
 }

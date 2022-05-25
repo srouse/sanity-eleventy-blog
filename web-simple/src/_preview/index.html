@@ -46,7 +46,7 @@
     }
 
     function writeHTML(html) {
-      // browser sync needs to inject something into the body...so pass it on.
+      // BROWSER SYNC needs to inject something into the body...so pass it on.
       const bodyContent = document.body.innerHTML;
       var newHTML = document.open("text/html", "replace");
       newHTML.write(`${html} ${bodyContent}`);
@@ -59,13 +59,14 @@
       background-color: #eee;
     }
     body::after {
-      content: 'loading preview...';
+      content: 'creating preview';
       position: absolute;
       top: 0; bottom: 0;
       left: 0; right: 0;
       text-align: center;
       padding-top: 300px;
       font-family: Arial, Helvetica, sans-serif;
+      color: #555;
     }
   </style>
   <body></body>

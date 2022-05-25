@@ -3,8 +3,9 @@ import chalk from 'chalk';
 import getRoutes from '../src/routes.mjs';
 import {writeFile, mkdir} from 'fs/promises';
 import nunjucksUtils from '../src/utils/nunjucksUtils.mjs';
-import {ssr} from 'scu-web-components/scripts/ssr.mjs';
-import { configImages } from '../src/utils/imageUrl.mjs';
+import {ssr} from 'scu-web-components/scripts/ssr.mjs';// Web Comp SSR
+import { configImages } from '../src/utils/sanityClient.mjs';
+import { configImages as contentfulConfigImages } from '../src/utils/contentfulClient.mjs';
 
 const distFolder = './dist';
 const assetsFolder = `${distFolder}/_assets`;
@@ -21,6 +22,7 @@ export default async function ssg() {
 
   // give images access to data
   configImages(data);
+  contentfulConfigImages(data);
 
   // Init Nunjucks
   nunjucksUtils(
@@ -94,6 +96,7 @@ async function cacheImages(data) {
     imagePromiseArray.push(new Promise(async (resolve) => {
       const name = imgInfo[0];
       const url = imgInfo[1];
+      console.log('caching image', url);
       await fetch(url)
         .then(response => response.arrayBuffer())
         .then(imageBlob => {

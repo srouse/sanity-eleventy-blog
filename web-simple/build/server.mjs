@@ -25,11 +25,11 @@ export async function server(buildResult, withSSG) {
   const browser = browserSync.create();
 
   const port = await getPort({
-    port: 8080 // portNumbers(4000, 4999)
+    port: 8081 // portNumbers(4000, 4999)
   });
 
-  if (port !== 8080) {
-    console.log(chalk.magenta(`Error: couldn't get port 8080 (for Sanity)`));
+  if (port !== 8081) {
+    console.log(chalk.magenta(`Error: couldn't get port 8081 (for Sanity)`));
     return;
   }
 

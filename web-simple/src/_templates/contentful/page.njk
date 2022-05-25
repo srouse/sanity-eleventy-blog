@@ -1,0 +1,21 @@
+{% extends "layouts/base.njk" %}
+
+{% block content %}
+  <scw-stack
+    class="baseContent"
+    scw-padding-top-3s
+    scw-gap-2s>
+  
+    <scw-element
+      scw-text-08>
+      {{ contentfulPage.slug }}
+    </scw-element>
+
+    <img
+      src="{{ contentfulImageUrl(contentfulPage.image, 300) }}"
+      style="width: 300px;" />
+
+    <a href="{{ url('contentful-page', 'home-page')}}">contentful home page</a>
+
+  </scw-stack>
+{% endblock %}

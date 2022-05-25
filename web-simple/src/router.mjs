@@ -3,6 +3,8 @@ import postData from './_data/post.mjs';
 import pageData from './_data/page.mjs';
 import homePage from './_data/homePage.mjs';
 import Router from './utils/Router.mjs';
+// import contentfulPages from './_data/contentful/pages.mjs';
+import contentfulPage from './_data/contentful/page.mjs';
 
 export default new Router(
   [
@@ -12,6 +14,8 @@ export default new Router(
       template: 'index.njk',
       data: async (data) => {
         await homePage(data);
+        // await contentfulPages(data);
+        await contentfulPage(data);
       }
     },
     {
@@ -22,13 +26,20 @@ export default new Router(
         await postsList(data);
       }
     },
-    // arg1, arg2,... get sent into data call automatically
     {
       id: 'page',
       url: arg1 => `/${arg1}`,
       template: 'page.njk',
       data: async (data, arg1) => {
         await pageData(data, arg1);
+      }
+    },
+    {
+      id: 'contentful-page',
+      url: arg1 => `/contentful/${arg1}`,
+      template: 'contentful/page.njk',
+      data: async (data, arg1) => {
+        await contentfulPage(data, arg1);
       }
     },
     {

@@ -25,6 +25,12 @@ export default {
       description: 'This can be used to schedule post for publishing'
     },
     /* {
+      title: 'Description',
+      name: 'description',
+      type: 'string',
+      description: 'Description description'
+    }, */
+    /* {
       name: 'navMenu',
       type: 'reference',
       title: 'Navigation menu',
