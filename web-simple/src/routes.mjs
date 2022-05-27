@@ -45,7 +45,7 @@ export default async function getRoutes(data) {
           [page.fields.slug] 
         )
       );
-    })
+    });
 
   }
   return routesObj;

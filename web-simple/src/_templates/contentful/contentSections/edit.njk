@@ -1,0 +1,19 @@
+
+{% if context.type === 'browser' %}
+  <div
+    style="
+      width: auto;
+      position: absolute;
+      top: 0; right: 0;
+      margin: 6px;
+      z-index: 100000;">
+    <a 
+      href="https://app.contentful.com/spaces/{{contentSection.sys.space.sys.id}}/entries/{{contentSection.sys.id}}?previousEntries={{contentfulPage.sys.id}}"
+      target="_contentful"
+      scw-color-grey-03
+      style="
+        text-decoration: none;">
+      EDIT
+    </a>
+  </div>
+{% endif %}

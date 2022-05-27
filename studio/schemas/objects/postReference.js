@@ -4,6 +4,16 @@ export default {
   title: 'Post reference',
   fields: [
     {
+      title: 'Title',
+      name: 'title',
+      type: 'string'
+    },
+    {
+      title: 'Description',
+      name: 'description',
+      type: 'string'
+    },
+    {
       name: 'post',
       type: 'reference',
       to: [

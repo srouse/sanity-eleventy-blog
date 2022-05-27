@@ -1,0 +1,11 @@
+{% if richText %}
+  {% for content in richText.content %}
+    {% for contentPart in content.content %}
+      <scw-element
+        scw-color-grey-02
+        scw-text-06>
+        {{ contentPart.value }}
+      </scw-element>
+    {% endfor %}
+  {% endfor %}
+{% endif %}

@@ -34,4 +34,7 @@ export default function(env, data) {
 
   env.addGlobal("imageUrl", imageUrl);
   env.addGlobal("contentfulImageUrl", contentfulImageUrl);
+
+  // I know...but it's just so easy to use there
+  env.addGlobal("log", (...args) => { console.log(...args) });
 }

@@ -1,0 +1,63 @@
+{% macro textSection( contentSection ) %}
+  <scw-stack
+    style="flex: 4;"
+    {% if contentSection.fields.superTitle %}
+      <scw-element
+        scw-color-primary-04
+        scw-text-bold-condensed-07
+        style="text-transform: uppercase;">
+        {{contentSection.fields.superTitle}}
+      </scw-element>
+    {% endif %}
+    {% if contentSection.fields.title %}
+      <scw-element
+        scw-color-primary-02
+        scw-text-bold-condensed-10
+        scw-margin-bottom-1s
+        style="text-transform: uppercase;">
+        {{contentSection.fields.title}}
+      </scw-element>
+    {% endif %}
+    {% if contentSection.fields.description %}
+      <scw-element
+        scw-color-grey-02
+        scw-text-06>
+        {{contentSection.fields.description}}
+      </scw-element>
+    {% endif %}
+    {% set richText = contentSection.fields.content %}
+    {% include "layouts/richText.njk" %}
+  </scw-stack>
+{% endmacro %}
+
+{% macro imageSection( contentSection ) %}
+  <scw-image
+    scw-fill
+    object-fit="cover"
+    style="
+      height: 440px;
+      flex: 6;"
+    src="{{ contentfulImageUrl(contentSection.fields.image) }}"
+    alt="{{ contentSection.fields.image.fields.title }}">
+  </scw-image>
+{% endmacro %}
+
+<scw-flex-h
+  class="pageWidth"
+  scw-margin-height-5s
+  scw-alignment-center
+  scw-gap-3s>
+  {{log('contentSection', contentSection)}}
+  {% if 
+    contentSection.fields.sectionLayout and 
+    contentSection.fields.sectionLayout.fields.side == 'left' 
+  %}
+    {{ textSection(contentSection) }}
+    {{ imageSection(contentSection) }}
+  {% else %}
+    {{ imageSection(contentSection) }}
+    {{ textSection(contentSection) }}
+  {% endif %}
+
+  {% include "contentful/contentSections/edit.njk" %}
+</scw-flex-h>

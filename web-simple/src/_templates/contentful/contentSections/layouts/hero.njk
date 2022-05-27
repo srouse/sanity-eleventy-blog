@@ -1,0 +1,31 @@
+<scw-stack style="
+  background-image: url('{{ contentfulImageUrl(contentSection.fields.image) }}');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;">
+  <scw-flex-h
+    class="pageWidth"
+    scw-alignment-stretch
+    style="
+      height: calc( 40 * var( --scw-spacing-1 ));
+      text-shadow: 0 0 10px #fff;">
+    <scw-flex-v
+      scw-alignment-left-center
+      scw-fill>
+      <scu-text
+        scw-color-primary-03
+        scw-text-bold-condensed-08>
+        {{contentSection.fields.superTitle}}
+      </scu-text>
+      <scu-text
+        scw-color-grey-02
+        scw-text-bold-condensed-10>
+        {{contentSection.fields.title}}
+      </scu-text>
+    </scw-flex-v>
+    <scw-fill>
+    </scw-fill>
+  </scw-flex-h>
+  
+  {% include "contentful/contentSections/edit.njk" %}
+</scw-stack>

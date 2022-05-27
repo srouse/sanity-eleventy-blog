@@ -1,21 +1,19 @@
 {% extends "layouts/base.njk" %}
+{% import "contentful/contentSections/contentSection.njk" as contentSectionLayout %}
 
 {% block content %}
+
   <scw-stack
-    class="baseContent"
-    scw-padding-top-3s
-    scw-gap-2s>
-  
-    <scw-element
-      scw-text-08>
-      {{ contentfulPage.slug }}
-    </scw-element>
-
-    <img
-      src="{{ contentfulImageUrl(contentfulPage.image, 300) }}"
-      style="width: 300px;" />
-
-    <a href="{{ url('contentful-page', 'home-page')}}">contentful home page</a>
-
+    {% if contentfulPage.fields.theme == 'Mortgage' %}
+      scw-theme-mortgage
+    {% elseif contentfulPage.fields.theme == 'Investments' %}
+      scw-theme-investments
+    {% elseif contentfulPage.fields.theme == 'Primary' %}
+      scw-theme-primary
+    {% endif %}>
+    {% for contentSection in contentfulPage.fields.content %}
+      {{ contentSectionLayout.contentSectionLayout(contentSection, contentfulPage, context) }}
+    {% endfor %}
   </scw-stack>
+  
 {% endblock %}

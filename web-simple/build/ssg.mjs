@@ -88,8 +88,9 @@ async function renderPage(data, routeEntry) {
 }
 
 async function cacheImages(data) {
-  console.log(chalk.yellow(`\nImage Caching Started`));
+  console.log(chalk.yellow(`\nImage Caching Started ${assetsFolder}`));
   await mkdir(`${assetsFolder}`, { recursive: true });
+  if (!data || !data.context || !data.context.images) return;
   const imageEntries = Object.entries(data.context.images);
   const imagePromiseArray = [];
   imageEntries.map(imgInfo => {

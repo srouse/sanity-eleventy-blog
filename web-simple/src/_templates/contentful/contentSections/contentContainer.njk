@@ -1,0 +1,39 @@
+{% import "contentful/contentSections/contentSection.njk" as contentSectionLayout %}
+
+<scw-flex-v
+  scw-padding-2s
+  class="pageWidth">
+
+  {% if contentSection.fields.superTitle %}
+    <scw-element
+      scw-color-primary-04
+      scw-text-bold-condensed-07
+      style="text-transform: uppercase;">
+      {{contentSection.fields.superTitle}}
+    </scw-element>
+  {% endif %}
+  {% if contentSection.fields.title %}
+    <scw-element
+      scw-color-primary-02
+      scw-text-bold-condensed-06
+      style="text-transform: uppercase;">
+      {{contentSection.fields.title}}
+    </scw-element>
+  {% endif %}
+  {% if contentSection.fields.description %}
+    <scw-element
+      scw-color-grey-02
+      scw-text-06>
+      {{contentSection.fields.description}}
+    </scw-element>
+  {% endif %}
+
+  <scw-flex-h>
+    {% for child in contentSection.fields.children %}
+      {{ contentSectionLayout.contentSectionLayout(child) }}
+    {% endfor %}
+  </scw-flex-h>
+
+  {% include "contentful/contentSections/edit.njk" %}
+
+</scw-flex-v>

@@ -8,15 +8,20 @@ export default contentful.createClient({
 let data;
 
 export function imageUrl(image, width, height) {
+  if (!image || !image.fields)
+    return '';
+
+  let url = image.fields.file.url;
+  if (image.fields.file.contentType !== 'image/svg+xml') {
+    url = `${image.fields.file.url}?fm=webp`;
+  }
   
-  let url = `${image.fields.file.url}?fm=webp`;
   if (width) {
     url = `${url}&w=${width}`
   }
   if (height) {
     url = `${url}&w=${height}`
   }
-
 
   if (
     data &&
@@ -32,9 +37,8 @@ export function imageUrl(image, width, height) {
     data.context.images[imgNameClean] = `https:${url}`;
     return `/_assets/${imgNameClean}`;
   }else{
-    return url;// want to pull from sanity for preview...
+    return `https:${url}`;// want to pull from contentful for preview...
   }
-
 }
 
 export function configImages(buildData) {

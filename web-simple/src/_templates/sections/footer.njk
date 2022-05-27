@@ -1,9 +1,13 @@
 
 
-<scw-stack 
-  class="baseContent"
-  scw-color-grey-03
-  scw-padding-top-5s>
-  Current page: {{ context.route }}
-  Type: {{ context.type }} 
+<scw-stack
+  scw-background-color-grey-095>
+  <scw-stack 
+    class="pageWidth"
+    scw-color-grey-03
+    scw-padding-top-5s
+    style="height: 400px;">
+    Current page: {{ context.route }}
+    Type: {{ context.type }} 
+  </scw-stack>
 </scw-stack>

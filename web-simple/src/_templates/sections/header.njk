@@ -1,5 +1,5 @@
 <scw-flex-h
-  class="baseContent"
+  class="pageWidth"
   scw-height-11s
   scw-alignment-stretch>
   <scw-flex-v
@@ -116,7 +116,7 @@
         <scw-menu-item
           design="main"
           aria-label="Contentful Page"
-          href="{{ url( 'contentful-page', 'another-page') }}">
+          href="{{ url( 'contentful-page', 'it-s-here-fresh-new-look-for-online-mobile-banking') }}">
         </scw-menu-item>
         <scw-menu-item
           design="main"
@@ -126,6 +126,10 @@
       </scw-menu>
     </scw-flex-h>
   </scw-flex-v>
+
+  {% if contentfulPage %}
+    {% include "contentful/edit.njk" %}
+  {% endif %}
 </scw-flex-h>
 <scw-element 
   scw-border-bottom-grey-09>

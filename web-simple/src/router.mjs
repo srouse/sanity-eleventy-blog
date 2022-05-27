@@ -14,8 +14,6 @@ export default new Router(
       template: 'index.njk',
       data: async (data) => {
         await homePage(data);
-        // await contentfulPages(data);
-        await contentfulPage(data);
       }
     },
     {
