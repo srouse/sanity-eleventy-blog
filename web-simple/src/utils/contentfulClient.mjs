@@ -5,6 +5,15 @@ export default contentful.createClient({
   ...config,
 });
 
+/*
+const client = contentful.createClient({
+  space: "developer_bookshelf",
+  accessToken: "preview_0b7f6x59a0",
+  host: "preview.contentful.com"
+});
+*/
+
+
 let data;
 
 export function imageUrl(image, width, height) {

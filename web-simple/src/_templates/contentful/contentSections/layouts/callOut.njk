@@ -1,10 +1,11 @@
 
 <scw-flex-v
   class="contentWidth"
-  scw-padding-height-5s
   scw-padding-width-4s
+  scw-padding-top-{{contentSection.fields.sectionLayout.fields.paddingTop }}s
+  scw-padding-bottom-{{contentSection.fields.sectionLayout.fields.paddingBottom }}s
   scw-effect-shadow
-  {% if contentSection.fields.layoutSide == 'center' %}
+  {% if contentSection.fields.sectionLayout.fields.side == 'center' %}
     scw-alignment-center
     style="text-align: center;"
   {% endif %}>

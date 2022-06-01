@@ -1,7 +1,6 @@
 {% import "contentful/contentSections/contentSection.njk" as contentSectionLayout %}
 
 <scw-flex-v
-  scw-padding-2s
   class="pageWidth">
 
   {% if contentSection.fields.superTitle %}
@@ -30,7 +29,7 @@
 
   <scw-flex-h>
     {% for child in contentSection.fields.children %}
-      {{ contentSectionLayout.contentSectionLayout(child) }}
+      {{ contentSectionLayout.contentSectionLayout(child, contentfulPage, context) }}
     {% endfor %}
   </scw-flex-h>
 

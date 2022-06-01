@@ -26,8 +26,11 @@
       import {defineComponents} from '/_js/scu-web-components/dist/scw.js';
       defineComponents();
     </script>
-    <link rel="stylesheet" rel="preload" href="/ssr.css" />
-    <!--link rel="stylesheet" rel="preload" href="/_js/scu-web-components/dist/tokens/styles.css" /-->
+    {% if context.type == "browser" %}
+      <link rel="stylesheet" rel="preload" href="/_js/scu-web-components/dist/tokens/styles.css" />
+    {% elseif context.type == "server" %}
+      <link rel="stylesheet" rel="preload" href="/ssr.css" />
+    {% endif %}
     <link rel="stylesheet" rel="preload" href="/_js/scu-web-components/dist/tokens/fonts.css" />
     <!-- Design System END -->
 
@@ -89,62 +92,6 @@
         --scw-color-095: var( --scw-color-grey-095 ); 
       }
 
-      .scw-theme-primary,
-      [scw-theme-primary],
-      .scw-theme-primary [element],
-      [scw-theme-primary] [element],
-      [element][color=primary] {
-        --scw-color-01: var( --scw-color-primary-01 );
-        --scw-color-02: var( --scw-color-primary-02 );
-        --scw-color-03: var( --scw-color-primary-03 );
-        --scw-color-04: var( --scw-color-primary-04 );
-        --scw-color-05: var( --scw-color-primary-05 );
-        --scw-color: var( --scw-color-primary );
-        --scw-color-06: var( --scw-color-primary-06 );
-        --scw-color-07: var( --scw-color-primary-07 );
-        --scw-color-08: var( --scw-color-primary-08 );
-        --scw-color-09: var( --scw-color-primary-09 );
-        --scw-color-092: var( --scw-color-primary-092 );
-        --scw-color-095: var( --scw-color-primary-095 ); 
-      }
-
-      .scw-theme-mortgage,
-      [scw-theme-mortgage],
-      .scw-theme-mortgage [element],
-      [scw-theme-mortgage] [element],
-      [element][color=mortgage] {
-        --scw-color-01: var( --scw-color-mortgage-01 );
-        --scw-color-02: var( --scw-color-mortgage-02 );
-        --scw-color-03: var( --scw-color-mortgage-03 );
-        --scw-color-04: var( --scw-color-mortgage-04 );
-        --scw-color-05: var( --scw-color-mortgage-05 );
-        --scw-color: var( --scw-color-mortgage );
-        --scw-color-06: var( --scw-color-mortgage-06 );
-        --scw-color-07: var( --scw-color-mortgage-07 );
-        --scw-color-08: var( --scw-color-mortgage-08 );
-        --scw-color-09: var( --scw-color-mortgage-09 );
-        --scw-color-092: var( --scw-color-mortgage-092 );
-        --scw-color-095: var( --scw-color-mortgage-095 ); 
-      }
-
-      .scw-theme-investments,
-      [scw-theme-investments],
-      .scw-theme-investments [element],
-      [scw-theme-investments] [element],
-      [element][color=investments] {
-        --scw-color-01: var( --scw-color-investments-01 );
-        --scw-color-02: var( --scw-color-investments-02 );
-        --scw-color-03: var( --scw-color-investments-03 );
-        --scw-color-04: var( --scw-color-investments-04 );
-        --scw-color-05: var( --scw-color-investments-05 );
-        --scw-color: var( --scw-color-investments );
-        --scw-color-06: var( --scw-color-investments-06 );
-        --scw-color-07: var( --scw-color-investments-07 );
-        --scw-color-08: var( --scw-color-investments-08 );
-        --scw-color-09: var( --scw-color-investments-09 );
-        --scw-color-092: var( --scw-color-investments-092 );
-        --scw-color-095: var( --scw-color-investments-095 ); 
-      }
 
       /* END THEME FIX */
 

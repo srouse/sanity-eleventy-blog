@@ -3,13 +3,10 @@
 
 {% block content %}
 
+  {% set theme = contentfulPage.fields.layouts[0].fields.theme %}
   <scw-stack
-    {% if contentfulPage.fields.theme == 'Mortgage' %}
-      scw-theme-mortgage
-    {% elseif contentfulPage.fields.theme == 'Investments' %}
-      scw-theme-investments
-    {% elseif contentfulPage.fields.theme == 'Primary' %}
-      scw-theme-primary
+    {% if theme != 'none' %}
+      scw-theme-{{theme}}
     {% endif %}>
     {% for contentSection in contentfulPage.fields.content %}
       {{ contentSectionLayout.contentSectionLayout(contentSection, contentfulPage, context) }}

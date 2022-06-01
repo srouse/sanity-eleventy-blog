@@ -2,7 +2,9 @@
   background-image: url('{{ contentfulImageUrl(contentSection.fields.image) }}');
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center;">
+  background-position: center;"
+  scw-padding-top-{{contentSection.fields.sectionLayout.fields.paddingTop }}s
+  scw-padding-bottom-{{contentSection.fields.sectionLayout.fields.paddingBottom }}s>
   <scw-flex-h
     class="pageWidth"
     scw-alignment-stretch

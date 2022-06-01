@@ -1,16 +1,16 @@
 {% macro contentSectionLayout( contentSection, contentfulPage, context ) %}
 
-  {% set layout = contentSection.fields.layout %}
+  {% set layout = contentSection.fields.sectionLayout.fields.layout %}
   {% set contentType = contentSection.sys.contentType.sys.id %}
 
   {% if contentType == "heroSection" %}
-    {% if layout == "Hero" %}
+    {% if layout == "hero" %}
       {% include "contentful/contentSections/layouts/hero.njk" %}
-    {% elseif layout == "Call Out" %}
+    {% elseif layout == "call-out" %}
       {% include "contentful/contentSections/layouts/callOut.njk" %}
-    {% elseif layout == "Horizontal Image" %}
+    {% elseif layout == "horizontal-image" %}
       {% include "contentful/contentSections/layouts/horizontalImage.njk" %}
-    {% elseif layout == "Summary" %}
+    {% elseif layout == "summary" %}
       {% include "contentful/contentSections/layouts/summary.njk" %}
     {% else %}
       {% include "contentful/contentSections/layouts/default.njk" %}

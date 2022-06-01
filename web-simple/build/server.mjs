@@ -76,7 +76,6 @@ export async function server(buildResult, withSSG) {
       //   'src/**/*.ssr.*'      // don't watch generated ssr files
       // ]
     }).on('change', async filename => {
-    console.log(chalk.yellow(`Rebuilding (${filename})\n`));
     rebuildAndReload(buildResult, browser, filename, withSSG);// , buildConfig);
   });
 }

@@ -44,10 +44,12 @@
 
 <scw-flex-h
   class="pageWidth"
-  scw-margin-height-5s
+
+  scw-padding-top-{{contentSection.fields.sectionLayout.fields.paddingTop }}s
+  scw-padding-bottom-{{contentSection.fields.sectionLayout.fields.paddingBottom }}s
+
   scw-alignment-center
   scw-gap-3s>
-  {{log('contentSection', contentSection)}}
   {% if 
     contentSection.fields.sectionLayout and 
     contentSection.fields.sectionLayout.fields.side == 'left' 
