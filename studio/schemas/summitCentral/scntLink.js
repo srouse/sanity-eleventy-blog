@@ -25,14 +25,11 @@ export default {
       type: 'boolean'
     },
     {
-      title: 'Parent',
-      name: 'parent',
-      type: 'reference',
-      to: [
-        {
-          type: 'scntLink'
-        }
-      ]
+      title: 'Children',
+      name: 'children',
+      description: 'The child links making this a folder.',
+      type: 'array',
+      of: [{type: 'reference', to: {type: 'scntLink'}}]
     },
     {
       title: 'Roles',
