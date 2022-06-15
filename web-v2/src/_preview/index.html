@@ -1,0 +1,23 @@
+<html>
+  <script type="module">
+    import run from './preview.js';
+    run();
+  </script>
+  <style>
+    body {
+      background-color: #fff;
+    }
+    body::after {
+      content: 'creating preview';
+      position: absolute;
+      top: 0; bottom: 0;
+      left: 0; right: 0;
+      text-align: center;
+      padding-top: 300px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 12px;
+      color: #555;
+    }
+  </style>
+  <body></body>
+</html>

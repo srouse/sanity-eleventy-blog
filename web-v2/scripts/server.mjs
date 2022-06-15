@@ -1,7 +1,7 @@
 import getPort from 'get-port';
 import browserSync from 'browser-sync';
 import chalk from 'chalk';
-import cssr from './cssr.mjs';
+// import cssr from './cssr.mjs';
 import ssg from './ssg.mjs';
 import esbuild from './esbuild.mjs';
 import path from 'path';
@@ -15,7 +15,7 @@ export async function buildAndServe(withSSG = false) {
   // ESBuild
   const buildResult = await esbuild(true);
   // CSSR
-  await cssr();
+  // await cssr();
   server(buildResult, withSSG);
 }
 
@@ -54,7 +54,7 @@ export async function server(buildResult, withSSG) {
       port: 8081
     }
   }, (err, bs) => {
-    bs.addMiddleware("*", (req, res) => {
+    /* bs.addMiddleware("*", (req, res) => {
       const dynamicContent = fs.readFileSync(
         `${__dirname}/src/_preview/index.html`,
         {encoding:'utf8', flag:'r'}
@@ -64,7 +64,7 @@ export async function server(buildResult, withSSG) {
       // Provides the 404 content without redirect.
       res.write(finalContent);
       res.end();
-    });
+    });*/
   });
 
   browser.watch([// REBUILD
@@ -89,7 +89,7 @@ function rebuildAndReload(buildResult, browser, filename, withSSG) {// , buildCo
         return Promise.resolve()
       })
       .then(() => withSSG ? ssg() : Promise.resolve())
-      .then(() => cssr())
-      // .then(() => browser.reload())
+      // .then(() => cssr())
+      .then(() => browser.reload())
       .catch(err => console.error(chalk.red(err)));
 }

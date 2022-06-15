@@ -9,6 +9,8 @@
 
 */dist
 */dist-dev
+*/dist-node
 */_site
+*/node_modules
 
 /web-og
